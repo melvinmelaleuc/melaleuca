@@ -176,7 +176,7 @@
 
       <section class="pt-4 space-y-3">
         <p id="txt-send-title" class="text-center font-bold text-slate-800 text-sm">
-          Enviar o convite para criar uma conta:
+          Iniciar o registro do novo cliente:
         </p>
 
         <!-- Error Alert Container -->
@@ -184,17 +184,10 @@
           Por favor, preencha todos os campos obrigatórios e aceite os termos para continuar.
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button type="button" id="btn-submit-email" onclick="submitForm('email')" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            <span id="btn-send-email">CORREIO ELETRÔNICO</span>
-          </button>
-
-          <button type="button" id="btn-submit-sms" onclick="submitForm('sms')" class="w-full bg-teal-800 hover:bg-teal-900 text-white font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
-            <i class="fa-solid fa-comment-sms" aria-hidden="true"></i>
-            <span id="btn-send-sms">MENSAGEM DE TEXTO</span>
-          </button>
-        </div>
+        <button type="button" id="btn-submit" onclick="submitForm()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+          <span id="btn-send-text">INICIAR REGISTRO</span>
+        </button>
       </section>
 
     </form>
@@ -292,9 +285,8 @@
         membership: "Tipo de Membro *",
         rule1: "Confirmo que assisti a Apresentação.",
         rule2: "Autorizo repassar minhas informações de e-mail e telefone a Melaleuca para que eu receba o convite.",
-        sendTitle: "Enviar o convite para criar uma conta:",
-        sendEmail: "CORREIO ELETRÔNICO",
-        sendSMS: "MENSAGEM DE TEXTO",
+        sendTitle: "Iniciar o registro do novo cliente:",
+        startBtn: "INICIAR REGISTRO",
         sending: "ENVIANDO...",
         errorMessage: "Por favor, preencha todos os campos obrigatórios e aceite as confirmações.",
         errFirstName: "Informe o nome.",
@@ -327,9 +319,8 @@
         membership: "Tipo de Membresía *",
         rule1: "Confirmo que asistí a la Presentación.",
         rule2: "Autorizo compartir mi información de correo electrónico y teléfono a Melaleuca para recibir la invitación.",
-        sendTitle: "Envíe la invitación a crear una cuenta:",
-        sendEmail: "CORREO ELECTRÓNICO",
-        sendSMS: "MENSAJE DE TEXTO",
+        sendTitle: "Iniciar el registro del nuevo cliente:",
+        startBtn: "INICIAR REGISTRO",
         sending: "ENVIANDO...",
         errorMessage: "Por favor, complete todos los campos obligatorios y acepte las confirmaciones.",
         errFirstName: "Ingrese el nombre.",
@@ -362,9 +353,8 @@
         membership: "Membership Type *",
         rule1: "I confirm that I watched the Presentation.",
         rule2: "I authorize sharing my email address and phone number with Melaleuca so I can receive the invitation.",
-        sendTitle: "Send the invitation to create an account:",
-        sendEmail: "EMAIL INVITATION",
-        sendSMS: "SEND TEXT MESSAGE",
+        sendTitle: "Start the new customer's registration:",
+        startBtn: "START REGISTRATION",
         sending: "SENDING...",
         errorMessage: "Please fill in all required fields and accept all checkboxes before sending.",
         errFirstName: "Enter the first name.",
@@ -420,8 +410,7 @@
 
       document.getElementById('txt-send-title').innerText = t.sendTitle;
       if (!sending) {
-        document.getElementById('btn-send-email').innerText = t.sendEmail;
-        document.getElementById('btn-send-sms').innerText = t.sendSMS;
+        document.getElementById('btn-send-text').innerText = t.startBtn;
       }
       document.getElementById('error-alert').innerText = t.errorMessage;
 
@@ -488,20 +477,15 @@
     function setSendingState(isSending) {
       sending = isSending;
       const t = translations[currentLang];
-      const emailBtn = document.getElementById('btn-submit-email');
-      const smsBtn = document.getElementById('btn-submit-sms');
-      const emailTxt = document.getElementById('btn-send-email');
-      const smsTxt = document.getElementById('btn-send-sms');
+      const btn = document.getElementById('btn-submit');
+      const btnTxt = document.getElementById('btn-send-text');
 
-      emailBtn.disabled = isSending;
-      smsBtn.disabled = isSending;
+      btn.disabled = isSending;
 
       if (isSending) {
-        emailTxt.innerHTML = `<i class="fa-solid fa-circle-notch spin" aria-hidden="true"></i> ${t.sending}`;
-        smsTxt.innerHTML = `<i class="fa-solid fa-circle-notch spin" aria-hidden="true"></i> ${t.sending}`;
+        btnTxt.innerHTML = `<i class="fa-solid fa-circle-notch spin" aria-hidden="true"></i> ${t.sending}`;
       } else {
-        emailTxt.innerText = t.sendEmail;
-        smsTxt.innerText = t.sendSMS;
+        btnTxt.innerText = t.startBtn;
       }
     }
 
@@ -525,7 +509,7 @@
       }
     }
 
-    async function submitForm(method) {
+    async function submitForm() {
       if (sending) return;
 
       const errorAlert = document.getElementById('error-alert');
@@ -558,7 +542,6 @@
         phone,
         regionLang,
         membershipType,
-        sendMethod: method,
         inviteUrl
       };
 
