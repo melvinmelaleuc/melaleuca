@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Prospecção de Clientes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .tr-text {
+      transition: opacity 0.15s ease-in-out;
+    }
+    .field-error {
+      border-color: #f87171 !important;
+      box-shadow: 0 0 0 1px #f87171;
+    }
+    .spin {
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 py-8 px-4 sm:px-6 lg:px-8">
+
+  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+
+    <!-- Top Bar: Header & Language Switcher -->
+    <header class="bg-gradient-to-r from-emerald-800 to-teal-900 text-white p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <span class="inline-block px-3 py-1 bg-emerald-700/50 rounded-full text-xs font-semibold tracking-wider uppercase text-emerald-200 mb-2">
+            Prospeção & Convite
+          </span>
+          <h1 id="txt-header-title" class="text-2xl sm:text-3xl font-bold tracking-tight tr-text">
+            Formulário de Prospecção
+          </h1>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="flex items-center space-x-2 bg-black/20 p-1.5 rounded-xl border border-white/10 self-end sm:self-center" role="group" aria-label="Seletor de idioma">
+          <i class="fa-solid fa-globe text-emerald-300 ml-2 text-sm" aria-hidden="true"></i>
+          <button type="button" onclick="changeLanguage('pt')" id="lang-btn-pt" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-emerald-900 shadow-sm" aria-pressed="true">
+            🇧🇷 PT
+          </button>
+          <button type="button" onclick="changeLanguage('es')" id="lang-btn-es" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-emerald-100 hover:bg-white/10" aria-pressed="false">
+            🇪🇸 ES
+          </button>
+          <button type="button" onclick="changeLanguage('en')" id="lang-btn-en" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-emerald-100 hover:bg-white/10" aria-pressed="false">
+            🇺🇸 EN
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <form id="prospectForm" novalidate class="p-6 sm:p-8 space-y-8">
+
+      <section class="space-y-4">
+        <h2 id="txt-precheck-title" class="text-lg font-bold text-slate-900 flex items-center gap-2 border-b pb-2 border-slate-200">
+          <i class="fa-solid fa-list-check text-emerald-600" aria-hidden="true"></i>
+          Antes de enviar um link de inscrição, certifique-se de que seu potencial cliente:
+        </h2>
+        <div class="space-y-3 bg-emerald-50/50 p-4 rounded-xl border border-emerald-100">
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="precheck1" required class="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded cursor-pointer">
+            <span id="txt-check1" class="text-sm text-slate-700 group-hover:text-slate-900 tr-text">
+              Participou de uma apresentação institucional ou resumo de negócios.
+            </span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="precheck2" required class="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded cursor-pointer">
+            <span id="txt-check2" class="text-sm text-slate-700 group-hover:text-slate-900 tr-text">
+              Foi convidado para se tornar um Sócio / Membro.
+            </span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" id="precheck3" required class="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded cursor-pointer">
+            <span id="txt-check3" class="text-sm text-slate-700 group-hover:text-slate-900 tr-text">
+              Entende o conceito do Pedido Pré-selecionado e o programa de fidelidade.
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 id="txt-info-title" class="text-lg font-bold text-slate-900 border-b pb-2 border-slate-200 flex items-center gap-2">
+          <i class="fa-solid fa-user-plus text-emerald-600" aria-hidden="true"></i>
+          Informações do Novo Cliente
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label id="lbl-first-name" for="firstName" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+              Nome *
+            </label>
+            <input type="text" id="firstName" name="firstName" required placeholder="Ex: Pedro" autocomplete="given-name" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+            <p id="err-firstName" class="hidden text-xs text-red-600 mt-1"></p>
+          </div>
+
+          <div>
+            <label id="lbl-last-name" for="lastName" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+              Sobrenome *
+            </label>
+            <input type="text" id="lastName" name="lastName" required placeholder="Ex: Silva Holanda" autocomplete="family-name" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+            <p id="err-lastName" class="hidden text-xs text-red-600 mt-1"></p>
+          </div>
+
+          <div>
+            <label id="lbl-email" for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+              Endereço de E-mail *
+            </label>
+            <input type="email" id="email" name="email" required placeholder="cliente@exemplo.com" autocomplete="email" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+            <p id="err-email" class="hidden text-xs text-red-600 mt-1"></p>
+          </div>
+
+          <div>
+            <label id="lbl-phone" for="phone" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+              Telefone Celular *
+            </label>
+            <input type="tel" id="phone" name="phone" required placeholder="(11) 98765-4321" autocomplete="tel" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+            <p id="err-phone" class="hidden text-xs text-red-600 mt-1"></p>
+          </div>
+
+          <div>
+            <label id="lbl-region-lang" for="regionLang" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+              Região e Idioma do Cliente *
+            </label>
+            <select id="regionLang" name="regionLang" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm bg-white">
+              <option value="br-pt">Brasil (português)</option>
+              <option value="us-es">EE. UU. (español)</option>
+              <option value="us-en">EE. UU. (english)</option>
+              <option value="mx-es">México (español)</option>
+            </select>
+          </div>
+
+          <div>
+            <label id="lbl-membership" for="membershipType" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+              Tipo de Membro *
+            </label>
+            <select id="membershipType" name="membershipType" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm bg-white">
+              <option value="socio">Sócio / Promoter</option>
+              <option value="cliente_preferencial">Cliente Preferencial</option>
+              <option value="cliente_direto">Cliente Direto</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-3 pt-2">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" id="acceptRule1" required class="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded">
+            <span id="txt-rule1" class="text-xs text-slate-700 leading-relaxed tr-text">
+              Confirmo que assisti a Apresentação.
+            </span>
+          </label>
+
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input type="checkbox" id="acceptRule2" required class="mt-1 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded">
+            <span id="txt-rule2" class="text-xs text-slate-700 leading-relaxed tr-text">
+              Autorizo repassar minhas informações de e-mail e telefone a Melaleuca para que eu receba o convite.
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="pt-4 space-y-3">
+        <p id="txt-send-title" class="text-center font-bold text-slate-800 text-sm">
+          Enviar o convite para criar uma conta:
+        </p>
+
+        <!-- Error Alert Container -->
+        <div id="error-alert" class="hidden p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-xs text-center font-medium" role="alert" aria-live="assertive">
+          Por favor, preencha todos os campos obrigatórios e aceite os termos para continuar.
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button type="button" id="btn-submit-email" onclick="submitForm('email')" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span id="btn-send-email">CORREIO ELETRÔNICO</span>
+          </button>
+
+          <button type="button" id="btn-submit-sms" onclick="submitForm('sms')" class="w-full bg-teal-800 hover:bg-teal-900 text-white font-bold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-comment-sms" aria-hidden="true"></i>
+            <span id="btn-send-sms">MENSAGEM DE TEXTO</span>
+          </button>
+        </div>
+      </section>
+
+    </form>
+
+    <footer class="bg-slate-50 border-t border-slate-200 p-4 text-center text-xs text-slate-400">
+      &copy; 2026 Portal de Prospecção Independente. Todos os direitos reservados.
+    </footer>
+  </div>
+
+  <div id="successModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 transform transition-all relative">
+
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold p-1" aria-label="Fechar">
+        &times;
+      </button>
+
+      <div class="text-center space-y-4">
+        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl">
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+        </div>
+
+        <h3 id="modal-title" class="text-2xl font-bold text-slate-900">
+          Convite Enviado!
+        </h3>
+
+        <p id="modal-desc" class="text-sm text-slate-600 leading-relaxed">
+          O seguinte link foi gerado e enviado para <strong id="modal-client-name" class="text-slate-900">Pedro Silva</strong> para a criação da sua conta.
+        </p>
+
+        <!-- Link Copy Box -->
+        <div class="space-y-1 text-left pt-2">
+          <label id="lbl-modal-link" for="inviteUrl" class="text-xs text-slate-500 font-medium">Link do Convite:</label>
+          <div class="flex items-center gap-2">
+            <input type="text" id="inviteUrl" readonly value="https://intro.prospects.com/?id=IxFJHA92" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-mono text-slate-700">
+            <button onclick="copyToClipboard()" id="btn-copy" class="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs px-4 py-2.5 rounded-lg transition shrink-0 flex items-center gap-1">
+              <i class="fa-solid fa-copy" aria-hidden="true"></i>
+              <span id="txt-copy-btn">COPIAR</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Google Sheets sync warning (shown only if the write fails) -->
+        <p id="modal-sheet-warning" class="hidden text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg p-2">
+        </p>
+
+        <p id="modal-recommendation" class="text-xs text-slate-500 italic pt-2">
+          Recomendamos que você ajude o cliente durante o processo de inscrição, seja presencialmente ou por telefone.
+        </p>
+
+        <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-center gap-3">
+          <button onclick="closeModal()" id="btn-modal-accept" class="w-full sm:w-auto px-8 py-2.5 border-2 border-emerald-700 text-emerald-800 hover:bg-emerald-50 font-bold rounded-lg text-sm transition">
+            ACEITAR
+          </button>
+          <button onclick="resetAndCloseModal()" id="btn-modal-new" class="w-full sm:w-auto px-8 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg text-sm transition">
+            NOVO CADASTRO
+          </button>
+        </div>
+
+        <p id="modal-footer-note" class="text-[11px] text-slate-400 pt-2">
+          Notificaremos você assim que o cadastro for concluído no painel de controle.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // CONFIGURAÇÃO
+    // Cole aqui a URL do seu Web App do Google Apps Script (veja o README.md /
+    // google-apps-script.gs para o passo a passo de implantação).
+    // =========================================================================
+    const CONFIG = {
+      GOOGLE_SCRIPT_URL: "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT_WEB_APP",
+      // Token simples para reduzir envios indevidos, já que este arquivo pode
+      // ficar público no GitHub. Defina o mesmo valor na constante SHARED_SECRET
+      // do arquivo google-apps-script.gs. Não é uma proteção forte, apenas um
+      // filtro básico contra bots/spam.
+      SHARED_SECRET: "troque-este-valor"
+    };
+
+    const translations = {
+      pt: {
+        headerTitle: "Formulário de Prospecção",
+        precheckTitle: "Antes de enviar um link de inscrição, certifique-se de que seu potencial cliente:",
+        check1: "Participou de uma apresentação institucional ou resumo de negócios.",
+        check2: "Foi convidado para se tornar um Sócio / Membro.",
+        check3: "Entende o conceito do Pedido Pré-selecionado e o programa de fidelidade.",
+        infoTitle: "Informações do Novo Cliente",
+        firstName: "Nome *",
+        lastName: "Sobrenome *",
+        email: "Endereço de E-mail *",
+        phone: "Telefone Celular *",
+        regionLang: "Região e Idioma do Cliente *",
+        membership: "Tipo de Membro *",
+        rule1: "Confirmo que assisti a Apresentação.",
+        rule2: "Autorizo repassar minhas informações de e-mail e telefone a Melaleuca para que eu receba o convite.",
+        sendTitle: "Enviar o convite para criar uma conta:",
+        sendEmail: "CORREIO ELETRÔNICO",
+        sendSMS: "MENSAGEM DE TEXTO",
+        sending: "ENVIANDO...",
+        errorMessage: "Por favor, preencha todos os campos obrigatórios e aceite as confirmações.",
+        errFirstName: "Informe o nome.",
+        errLastName: "Informe o sobrenome.",
+        errEmail: "Informe um e-mail válido.",
+        errPhone: "Informe um telefone válido.",
+        modalTitle: "Convite Enviado!",
+        modalDesc: "O seguinte link foi gerado e enviado para {name} para a criação da sua conta.",
+        modalLinkLabel: "Link do Convite:",
+        copyBtn: "COPIAR",
+        copiedBtn: "COPIADO!",
+        modalRec: "Recomendamos fortemente que você ajude seu cliente potencial durante o processo de inscrição.",
+        modalAccept: "ACEITAR",
+        modalNew: "NOVO CADASTRO",
+        modalFooter: "Notificaremos você assim que a conta for estabelecida ou você pode revisar no painel.",
+        sheetWarning: "Aviso: não foi possível registrar automaticamente este cadastro na planilha de controle. Anote os dados manualmente."
+      },
+      es: {
+        headerTitle: "Prospectar Clientes Potenciales",
+        precheckTitle: "Antes de enviar un enlace de inscripción, asegúrese de que su cliente potencial:",
+        check1: "Ha participado en una presentación oficial: Un resumen.",
+        check2: "Fue invitado a convertirse en Socio.",
+        check3: "Entiende el concepto del Pedido Preseleccionado y el programa de Socio.",
+        infoTitle: "Información del Nuevo Cliente",
+        firstName: "Nombres *",
+        lastName: "Apellidos *",
+        email: "Dirección de correo electrónico *",
+        phone: "Teléfono móvil *",
+        regionLang: "Región e idioma *",
+        membership: "Tipo de Membresía *",
+        rule1: "Confirmo que asistí a la Presentación.",
+        rule2: "Autorizo compartir mi información de correo electrónico y teléfono a Melaleuca para recibir la invitación.",
+        sendTitle: "Envíe la invitación a crear una cuenta:",
+        sendEmail: "CORREO ELECTRÓNICO",
+        sendSMS: "MENSAJE DE TEXTO",
+        sending: "ENVIANDO...",
+        errorMessage: "Por favor, complete todos los campos obligatorios y acepte las confirmaciones.",
+        errFirstName: "Ingrese el nombre.",
+        errLastName: "Ingrese el apellido.",
+        errEmail: "Ingrese un correo electrónico válido.",
+        errPhone: "Ingrese un teléfono válido.",
+        modalTitle: "Invitación enviada",
+        modalDesc: "El siguiente enlace se ha enviado a {name} para que cree una cuenta de compras.",
+        modalLinkLabel: "Enlace a la invitación:",
+        copyBtn: "COPIAR",
+        copiedBtn: "¡COPIADO!",
+        modalRec: "Le recomendamos encarecidamente que ayude a su cliente potencial durante el proceso de inscripción.",
+        modalAccept: "ACEPTO",
+        modalNew: "NUEVO REGISTRO",
+        modalFooter: "Le notificaremos en cuanto se establezca una cuenta o bien puede revisar el tablero.",
+        sheetWarning: "Aviso: no fue posible registrar automáticamente este registro en la hoja de cálculo. Anote los datos manualmente."
+      },
+      en: {
+        headerTitle: "Customer Prospecting Form",
+        precheckTitle: "Before sending an enrollment link, make sure that your prospective customer:",
+        check1: "Has attended an official presentation or business summary.",
+        check2: "Was invited to become a Member/Partner.",
+        check3: "Understands the Pre-selected Order concept and customer benefits program.",
+        infoTitle: "New Customer Information",
+        firstName: "First Name *",
+        lastName: "Last Name *",
+        email: "Email Address *",
+        phone: "Mobile Phone *",
+        regionLang: "Region and Language *",
+        membership: "Membership Type *",
+        rule1: "I confirm that I watched the Presentation.",
+        rule2: "I authorize sharing my email address and phone number with Melaleuca so I can receive the invitation.",
+        sendTitle: "Send the invitation to create an account:",
+        sendEmail: "EMAIL INVITATION",
+        sendSMS: "SEND TEXT MESSAGE",
+        sending: "SENDING...",
+        errorMessage: "Please fill in all required fields and accept all checkboxes before sending.",
+        errFirstName: "Enter the first name.",
+        errLastName: "Enter the last name.",
+        errEmail: "Enter a valid email address.",
+        errPhone: "Enter a valid phone number.",
+        modalTitle: "Invitation Sent!",
+        modalDesc: "The following link has been generated and sent to {name} to create their account.",
+        modalLinkLabel: "Invitation Link:",
+        copyBtn: "COPY",
+        copiedBtn: "COPIED!",
+        modalRec: "We strongly recommend assisting your prospect during their registration process.",
+        modalAccept: "ACCEPT",
+        modalNew: "NEW ENTRY",
+        modalFooter: "We will notify you as soon as the account is set up.",
+        sheetWarning: "Notice: this entry could not be automatically saved to the tracking spreadsheet. Please note the details manually."
+      }
+    };
+
+    let currentLang = 'pt';
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      ['pt', 'es', 'en'].forEach(l => {
+        const btn = document.getElementById(`lang-btn-${l}`);
+        if (l === lang) {
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-emerald-900 shadow-sm";
+          btn.setAttribute('aria-pressed', 'true');
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-emerald-100 hover:bg-white/10";
+          btn.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      document.getElementById('txt-header-title').innerText = t.headerTitle;
+      document.getElementById('txt-precheck-title').innerText = t.precheckTitle;
+      document.getElementById('txt-check1').innerText = t.check1;
+      document.getElementById('txt-check2').innerText = t.check2;
+      document.getElementById('txt-check3').innerText = t.check3;
+
+      document.getElementById('txt-info-title').innerText = t.infoTitle;
+      document.getElementById('lbl-first-name').innerText = t.firstName;
+      document.getElementById('lbl-last-name').innerText = t.lastName;
+      document.getElementById('lbl-email').innerText = t.email;
+      document.getElementById('lbl-phone').innerText = t.phone;
+      document.getElementById('lbl-region-lang').innerText = t.regionLang;
+      document.getElementById('lbl-membership').innerText = t.membership;
+
+      document.getElementById('txt-rule1').innerText = t.rule1;
+      document.getElementById('txt-rule2').innerText = t.rule2;
+
+      document.getElementById('txt-send-title').innerText = t.sendTitle;
+      if (!sending) {
+        document.getElementById('btn-send-email').innerText = t.sendEmail;
+        document.getElementById('btn-send-sms').innerText = t.sendSMS;
+      }
+      document.getElementById('error-alert').innerText = t.errorMessage;
+
+      document.getElementById('modal-title').innerText = t.modalTitle;
+      document.getElementById('lbl-modal-link').innerText = t.modalLinkLabel;
+      document.getElementById('txt-copy-btn').innerText = t.copyBtn;
+      document.getElementById('modal-recommendation').innerText = t.modalRec;
+      document.getElementById('btn-modal-accept').innerText = t.modalAccept;
+      document.getElementById('btn-modal-new').innerText = t.modalNew;
+      document.getElementById('modal-footer-note').innerText = t.modalFooter;
+      document.getElementById('modal-sheet-warning').innerText = t.sheetWarning;
+    }
+
+    let sending = false;
+
+    function clearFieldErrors() {
+      ['firstName', 'lastName', 'email', 'phone'].forEach(id => {
+        document.getElementById(id).classList.remove('field-error');
+        const err = document.getElementById(`err-${id}`);
+        err.classList.add('hidden');
+        err.innerText = '';
+      });
+    }
+
+    function showFieldError(id, message) {
+      document.getElementById(id).classList.add('field-error');
+      const err = document.getElementById(`err-${id}`);
+      err.innerText = message;
+      err.classList.remove('hidden');
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validateForm() {
+      const t = translations[currentLang];
+      clearFieldErrors();
+      let valid = true;
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!firstName) { showFieldError('firstName', t.errFirstName); valid = false; }
+      if (!lastName) { showFieldError('lastName', t.errLastName); valid = false; }
+      if (!email || !isValidEmail(email)) { showFieldError('email', t.errEmail); valid = false; }
+      if (!phone || phone.replace(/\D/g, '').length < 8) { showFieldError('phone', t.errPhone); valid = false; }
+
+      const pre1 = document.getElementById('precheck1').checked;
+      const pre2 = document.getElementById('precheck2').checked;
+      const pre3 = document.getElementById('precheck3').checked;
+      const r1 = document.getElementById('acceptRule1').checked;
+      const r2 = document.getElementById('acceptRule2').checked;
+
+      if (!pre1 || !pre2 || !pre3 || !r1 || !r2) {
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    function setSendingState(isSending) {
+      sending = isSending;
+      const t = translations[currentLang];
+      const emailBtn = document.getElementById('btn-submit-email');
+      const smsBtn = document.getElementById('btn-submit-sms');
+      const emailTxt = document.getElementById('btn-send-email');
+      const smsTxt = document.getElementById('btn-send-sms');
+
+      emailBtn.disabled = isSending;
+      smsBtn.disabled = isSending;
+
+      if (isSending) {
+        emailTxt.innerHTML = `<i class="fa-solid fa-circle-notch spin" aria-hidden="true"></i> ${t.sending}`;
+        smsTxt.innerHTML = `<i class="fa-solid fa-circle-notch spin" aria-hidden="true"></i> ${t.sending}`;
+      } else {
+        emailTxt.innerText = t.sendEmail;
+        smsTxt.innerText = t.sendSMS;
+      }
+    }
+
+    async function sendToGoogleSheets(payload) {
+      if (!CONFIG.GOOGLE_SCRIPT_URL || CONFIG.GOOGLE_SCRIPT_URL.indexOf('COLE_AQUI') !== -1) {
+        console.warn('CONFIG.GOOGLE_SCRIPT_URL não configurada — pulando envio para a planilha.');
+        return { status: 'skipped' };
+      }
+      try {
+        const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          // text/plain evita o preflight CORS (OPTIONS), que o Apps Script não trata.
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        const json = await response.json();
+        return json;
+      } catch (err) {
+        console.error('Erro ao enviar para a planilha do Google:', err);
+        return { status: 'error', message: err.message };
+      }
+    }
+
+    async function submitForm(method) {
+      if (sending) return;
+
+      const errorAlert = document.getElementById('error-alert');
+
+      if (!validateForm()) {
+        errorAlert.classList.remove('hidden');
+        errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      errorAlert.classList.add('hidden');
+      setSendingState(true);
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const regionLang = document.getElementById('regionLang').value;
+      const membershipType = document.getElementById('membershipType').value;
+
+      const randomId = Math.random().toString(36).substring(2, 10).toUpperCase();
+      const inviteUrl = `https://intro.prospects.com/?id=${randomId}`;
+
+      const payload = {
+        secret: CONFIG.SHARED_SECRET,
+        timestamp: new Date().toISOString(),
+        firstName,
+        lastName,
+        email,
+        phone,
+        regionLang,
+        membershipType,
+        sendMethod: method,
+        inviteUrl
+      };
+
+      const result = await sendToGoogleSheets(payload);
+
+      document.getElementById('inviteUrl').value = inviteUrl;
+
+      const fullName = `${firstName} ${lastName}`;
+      const t = translations[currentLang];
+      document.getElementById('modal-client-name').innerText = fullName;
+      document.getElementById('modal-desc').innerHTML = t.modalDesc.replace('{name}', `<strong class="text-slate-900">${fullName}</strong>`);
+
+      const warningEl = document.getElementById('modal-sheet-warning');
+      if (result && result.status === 'error') {
+        warningEl.innerText = t.sheetWarning;
+        warningEl.classList.remove('hidden');
+      } else {
+        warningEl.classList.add('hidden');
+      }
+
+      setSendingState(false);
+      document.getElementById('successModal').classList.remove('hidden');
+      document.getElementById('modal-title').focus();
+    }
+
+    function copyToClipboard() {
+      const input = document.getElementById('inviteUrl');
+      input.select();
+      input.setSelectionRange(0, 99999);
+
+      navigator.clipboard.writeText(input.value).then(() => {
+        showCopiedFeedback();
+      }).catch(() => {
+        try {
+          document.execCommand('copy');
+          showCopiedFeedback();
+        } catch (err) {
+          console.error('Erro ao copiar:', err);
+        }
+      });
+    }
+
+    function showCopiedFeedback() {
+      const copyBtnText = document.getElementById('txt-copy-btn');
+      const t = translations[currentLang];
+      copyBtnText.innerText = t.copiedBtn;
+      setTimeout(() => {
+        copyBtnText.innerText = t.copyBtn;
+      }, 2000);
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.add('hidden');
+    }
+
+    function resetAndCloseModal() {
+      document.getElementById('prospectForm').reset();
+      clearFieldErrors();
+      document.getElementById('error-alert').classList.add('hidden');
+      closeModal();
+      document.getElementById('firstName').focus();
+    }
+  </script>
+</body>
+</html>
