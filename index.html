@@ -10,32 +10,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background:#FFFFFF; color:#1c2521; }
     .font-serif-display { font-family: 'Playfair Display', serif; }
-    .pulse-badge {
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      animation: pulse-green 2s infinite;
-    }
+    .pulse-badge { box-shadow: 0 0 0 0 rgba(6, 95, 70, 0.5); animation: pulse-green 2s infinite; }
     @keyframes pulse-green {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(6, 95, 70, 0.5); }
+      70% { box-shadow: 0 0 0 14px rgba(6, 95, 70, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(6, 95, 70, 0); }
     }
-    .guarantee-badge { background: linear-gradient(135deg, #b45309 0%, #f59e0b 50%, #d97706 100%); }
     .field-error { border-color: #f87171 !important; box-shadow: 0 0 0 1px #f87171; }
     .spin { animation: spin 0.8s linear infinite; }
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -45,38 +28,38 @@
     .tr-text { transition: opacity 0.15s ease-in-out; }
   </style>
 </head>
-<body class="bg-stone-900 text-stone-100 antialiased selection:bg-emerald-500 selection:text-white">
+<body class="antialiased selection:bg-emerald-100">
 
-  <!-- ============================= TRUST BAR (sem contagem falsa de vagas) ============================= -->
-  <div class="bg-emerald-950 text-emerald-100 py-2.5 px-4 text-xs md:text-sm font-medium border-b border-emerald-900/60">
+  <!-- ============================= TRUST BAR ============================= -->
+  <div class="bg-emerald-900 text-emerald-50 py-2.5 px-4 text-xs md:text-sm font-medium">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6 text-center">
-      <span id="txt-trust-1" class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-amber-400"></i> Garantia de satisfação de 90 dias</span>
-      <span class="hidden sm:inline text-emerald-700">•</span>
-      <span id="txt-trust-2" class="flex items-center gap-1.5"><i class="fa-solid fa-leaf text-amber-400"></i> Mais de 40 anos de mercado</span>
+      <span id="txt-trust-1" class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-amber-300" aria-hidden="true"></i> Garantia de satisfação de 90 dias</span>
+      <span class="hidden sm:inline text-emerald-600">•</span>
+      <span id="txt-trust-2" class="flex items-center gap-1.5"><i class="fa-solid fa-leaf text-amber-300" aria-hidden="true"></i> Mais de 40 anos de mercado</span>
     </div>
   </div>
 
   <!-- ============================= HEADER ============================= -->
-  <header class="bg-emerald-950/90 backdrop-blur-xl border-b border-emerald-900/40 sticky top-0 z-40">
+  <header class="bg-white/90 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       <a href="#top" class="flex items-center gap-3 shrink-0">
-        <img src="assets/melaleuca-logo.png" alt="Melaleuca" class="h-7 sm:h-8 w-auto" style="filter: invert(1) brightness(2);">
+        <img src="assets/melaleuca-logo.png" alt="Melaleuca" class="h-7 sm:h-8 w-auto">
       </a>
 
-      <nav class="hidden lg:flex items-center gap-7 font-medium text-stone-300 text-sm">
-        <a id="nav-produtos" href="#produtos" class="hover:text-emerald-400 transition-colors">Produtos</a>
-        <a id="nav-como-funciona" href="#como-funciona" class="hover:text-emerald-400 transition-colors">Como Funciona</a>
-        <a id="nav-depoimentos" href="#depoimentos" class="hover:text-emerald-400 transition-colors">Depoimentos</a>
-        <a id="nav-faq" href="#faq" class="hover:text-emerald-400 transition-colors">Perguntas Frequentes</a>
+      <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
+        <a id="nav-produtos" href="#produtos" class="hover:text-emerald-700 transition-colors">Produtos</a>
+        <a id="nav-como-funciona" href="#como-funciona" class="hover:text-emerald-700 transition-colors">Como Funciona</a>
+        <a id="nav-depoimentos" href="#depoimentos" class="hover:text-emerald-700 transition-colors">Depoimentos</a>
+        <a id="nav-faq" href="#faq" class="hover:text-emerald-700 transition-colors">Perguntas Frequentes</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <div class="flex items-center space-x-1 bg-black/20 p-1 rounded-lg border border-white/10" role="group" aria-label="Seletor de idioma">
-          <button type="button" onclick="changeLanguage('pt')" id="lang-btn-pt" class="px-2.5 py-1 rounded-md text-xs font-bold transition-all bg-white text-emerald-950 shadow-sm" aria-pressed="true">🇧🇷 PT</button>
-          <button type="button" onclick="changeLanguage('es')" id="lang-btn-es" class="px-2.5 py-1 rounded-md text-xs font-bold transition-all text-emerald-100 hover:bg-white/10" aria-pressed="false">🇪🇸 ES</button>
-          <button type="button" onclick="changeLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-md text-xs font-bold transition-all text-emerald-100 hover:bg-white/10" aria-pressed="false">🇺🇸 EN</button>
+        <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg border border-slate-200" role="group" aria-label="Seletor de idioma">
+          <button type="button" onclick="changeLanguage('pt')" id="lang-btn-pt" class="px-2.5 py-1 rounded-md text-xs font-bold transition-all bg-emerald-900 text-white shadow-sm" aria-pressed="true">🇧🇷 PT</button>
+          <button type="button" onclick="changeLanguage('es')" id="lang-btn-es" class="px-2.5 py-1 rounded-md text-xs font-bold transition-all text-slate-500 hover:bg-slate-200" aria-pressed="false">🇪🇸 ES</button>
+          <button type="button" onclick="changeLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 rounded-md text-xs font-bold transition-all text-slate-500 hover:bg-slate-200" aria-pressed="false">🇺🇸 EN</button>
         </div>
-        <button type="button" onclick="revealForm()" id="btn-nav-cta" class="hidden sm:inline-flex bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-emerald-950 font-extrabold text-xs sm:text-sm px-4 sm:px-6 py-3 rounded-full shadow-lg shadow-emerald-500/20 transition-all transform hover:scale-105 whitespace-nowrap">
+        <button type="button" onclick="revealForm()" id="btn-nav-cta" class="hidden sm:inline-flex bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-xs sm:text-sm px-4 sm:px-6 py-3 rounded-full shadow-md transition-all transform hover:scale-105 whitespace-nowrap">
           <span id="txt-nav-cta">INICIAR REGISTRO</span>
         </button>
       </div>
@@ -84,73 +67,69 @@
   </header>
 
   <!-- ============================= HERO ============================= -->
-  <section id="top" class="relative bg-emerald-950 text-white overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-emerald-900/50">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-emerald-800/30 via-emerald-950 to-stone-950 pointer-events-none"></div>
-    <div class="absolute top-1/4 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+  <section id="top" class="relative bg-gradient-to-b from-emerald-50 via-white to-white overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid lg:grid-cols-12 gap-12 items-center">
 
         <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-          <span id="txt-hero-kicker" class="inline-flex items-center gap-2 bg-emerald-900/80 border border-emerald-500/40 text-emerald-300 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide tr-text">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="txt-hero-kicker" class="inline-flex items-center gap-2 bg-emerald-100 border border-emerald-200 text-emerald-800 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide tr-text">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
             Bem-estar que transforma vidas
           </span>
 
-          <h1 id="txt-hero-headline" class="text-4xl sm:text-5xl lg:text-[2.75rem] font-black font-serif-display leading-[1.12] text-white tr-text">
+          <h1 id="txt-hero-headline" class="text-4xl sm:text-5xl lg:text-[2.75rem] font-black font-serif-display leading-[1.12] text-emerald-950 tr-text">
             Produtos naturais para a sua casa, sua saúde e uma oportunidade real de crescer.
           </h1>
 
-          <p id="txt-hero-sub" class="text-stone-300 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0 tr-text">
+          <p id="txt-hero-sub" class="text-slate-600 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0 tr-text">
             Assista ao vídeo, conheça a Melaleuca e comece seu cadastro de sócio em poucos minutos.
           </p>
 
-          <div class="grid grid-cols-3 gap-3 pt-4 border-t border-emerald-800/70">
-            <div class="bg-emerald-900/40 p-3 rounded-xl border border-emerald-800/60 text-center lg:text-left">
-              <p class="text-emerald-400 font-extrabold text-lg sm:text-xl">400+</p>
-              <p id="txt-pill-1" class="text-[11px] text-stone-400 tr-text">Produtos concentrados</p>
+          <div class="grid grid-cols-3 gap-3 pt-4 border-t border-slate-200">
+            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-center lg:text-left">
+              <p class="text-emerald-800 font-extrabold text-lg sm:text-xl">400+</p>
+              <p id="txt-pill-1" class="text-[11px] text-slate-500 tr-text">Produtos concentrados</p>
             </div>
-            <div class="bg-emerald-900/40 p-3 rounded-xl border border-emerald-800/60 text-center lg:text-left">
-              <p class="text-emerald-400 font-extrabold text-lg sm:text-xl">+40</p>
-              <p id="txt-pill-2" class="text-[11px] text-stone-400 tr-text">Anos de mercado</p>
+            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-center lg:text-left">
+              <p class="text-emerald-800 font-extrabold text-lg sm:text-xl">+40</p>
+              <p id="txt-pill-2" class="text-[11px] text-slate-500 tr-text">Anos de mercado</p>
             </div>
-            <div class="bg-emerald-900/40 p-3 rounded-xl border border-emerald-800/60 text-center lg:text-left">
-              <p class="text-amber-400 font-extrabold text-lg sm:text-xl">90</p>
-              <p id="txt-pill-3" class="text-[11px] text-stone-400 tr-text">Dias de garantia</p>
+            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-center lg:text-left">
+              <p class="text-amber-600 font-extrabold text-lg sm:text-xl">90</p>
+              <p id="txt-pill-3" class="text-[11px] text-slate-500 tr-text">Dias de garantia</p>
             </div>
           </div>
 
           <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <button type="button" onclick="revealForm()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-emerald-950 font-black text-base px-8 py-4 rounded-2xl shadow-xl shadow-emerald-500/20 transition-all transform hover:-translate-y-1 text-center">
+            <button type="button" onclick="revealForm()" class="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white font-black text-base px-8 py-4 rounded-2xl shadow-lg shadow-emerald-700/20 transition-all transform hover:-translate-y-1 text-center">
               <i class="fa-solid fa-crown mr-2" aria-hidden="true"></i> <span id="txt-hero-cta-1">INICIAR REGISTRO</span>
             </button>
-            <a href="#como-funciona" class="w-full sm:w-auto bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 border border-emerald-700/60 font-bold text-base px-6 py-4 rounded-2xl transition-all text-center">
+            <a href="#como-funciona" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-emerald-800 border border-emerald-200 font-bold text-base px-6 py-4 rounded-2xl transition-all text-center">
               <i class="fa-solid fa-circle-info mr-2" aria-hidden="true"></i> <span id="txt-hero-cta-2">Como Funciona</span>
             </a>
           </div>
         </div>
 
         <div class="lg:col-span-6">
-          <div class="relative rounded-3xl p-3 bg-gradient-to-br from-emerald-500/30 via-emerald-900/50 to-amber-500/20 border border-emerald-500/30 shadow-2xl">
-            <div class="relative aspect-video rounded-2xl overflow-hidden bg-stone-900 group">
-              <img id="video-cover" src="assets/products-2.webp" alt="Produtos Melaleuca" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-              <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-emerald-950/40 to-transparent"></div>
+          <div class="relative rounded-3xl p-3 bg-white border border-slate-200 shadow-xl">
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-slate-100 group">
+              <img id="video-cover" src="assets/cover-pt.jpg" alt="Melaleuca - vídeo de apresentação" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
 
               <div id="video-play-overlay" class="absolute inset-0 flex flex-col items-center justify-center cursor-pointer" onclick="playHeroVideo()">
-                <div class="w-20 h-20 rounded-full bg-emerald-500 text-emerald-950 flex items-center justify-center text-3xl shadow-2xl pulse-badge transform transition-transform group-hover:scale-110">
+                <div class="w-20 h-20 rounded-full bg-emerald-700 text-white flex items-center justify-center text-3xl shadow-2xl pulse-badge transform transition-transform group-hover:scale-110">
                   <i class="fa-solid fa-play ml-1" aria-hidden="true"></i>
                 </div>
                 <div class="mt-4 text-center">
-                  <span id="txt-video-cta" class="text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-emerald-900/90 backdrop-blur-md px-5 py-2 rounded-full border border-emerald-500/40 shadow-lg inline-block tr-text">
-                    <i class="fa-solid fa-circle-play text-emerald-400 mr-2" aria-hidden="true"></i> Assista ao vídeo de apresentação
+                  <span id="txt-video-cta" class="text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-black/50 backdrop-blur-md px-5 py-2 rounded-full border border-white/20 shadow-lg inline-block tr-text">
+                    <i class="fa-solid fa-circle-play text-emerald-300 mr-2" aria-hidden="true"></i> Assista ao vídeo de apresentação
                   </span>
                 </div>
               </div>
 
               <iframe id="hero-iframe" class="w-full h-full absolute inset-0 hidden" src="" title="Apresentação Melaleuca" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <p id="txt-video-caption" class="text-xs text-emerald-200 mt-2 text-center tr-text">Vídeo em português</p>
+            <p id="txt-video-caption" class="text-xs text-slate-500 mt-2 text-center tr-text">Vídeo em português</p>
           </div>
         </div>
 
@@ -159,38 +138,37 @@
   </section>
 
   <!-- ============================= PRODUTOS ============================= -->
-  <section id="produtos" class="py-20 bg-stone-900 text-white border-t border-stone-800">
+  <section id="produtos" class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span id="txt-products-kicker" class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest bg-emerald-950 px-4 py-1.5 rounded-full border border-emerald-800 tr-text">Linha completa de produtos</span>
-        <h2 id="txt-products-title" class="text-3xl sm:text-4xl font-black font-serif-display text-white mt-4 mb-3 tr-text">Bem-estar, limpeza e beleza em um só lugar</h2>
-        <p id="txt-products-sub" class="text-stone-400 text-sm sm:text-base tr-text">Produtos concentrados e biodegradáveis para o dia a dia da sua família, com a qualidade que só a Melaleuca oferece.</p>
+        <span id="txt-products-kicker" class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100 tr-text">Linha completa de produtos</span>
+        <h2 id="txt-products-title" class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950 mt-4 mb-3 tr-text">Bem-estar, limpeza e beleza em um só lugar</h2>
+        <p id="txt-products-sub" class="text-slate-500 text-sm sm:text-base tr-text">Produtos concentrados e biodegradáveis para o dia a dia da sua família, com a qualidade que só a Melaleuca oferece.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-stone-950 border border-stone-800 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all">
+        <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all">
           <img src="assets/products-1.png" alt="Linha de limpeza e cuidados pessoais Melaleuca" class="w-full h-64 object-contain p-6">
         </div>
-        <div class="bg-stone-950 border border-stone-800 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all">
+        <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all">
           <img src="assets/products-2.webp" alt="Linha de beleza e nutrição Melaleuca" class="w-full h-64 object-contain p-6">
         </div>
-        <div class="bg-stone-950 border border-stone-800 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all">
+        <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all">
           <img src="assets/products-3.webp" alt="Linha de nutrição esportiva e casa Melaleuca" class="w-full h-64 object-contain p-6">
         </div>
       </div>
 
-      <!-- Faixa de garantia -->
-      <div class="mt-12 bg-gradient-to-r from-amber-950/60 via-emerald-950/80 to-amber-950/60 border border-amber-500/30 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="mt-12 bg-gradient-to-r from-amber-50 via-emerald-50 to-amber-50 border border-amber-200 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-4">
-          <div class="w-16 h-16 rounded-2xl guarantee-badge text-emerald-950 flex items-center justify-center text-3xl font-black shadow-lg shrink-0">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center text-3xl font-black shadow-lg shrink-0">
             <i class="fa-solid fa-shield-cat" aria-hidden="true"></i>
           </div>
           <div>
-            <h4 class="text-lg sm:text-xl font-extrabold text-amber-300">Garantia total de satisfação de 90 dias</h4>
-            <p class="text-xs text-stone-300 mt-1 max-w-xl">Experimente os produtos na sua casa. Se não ficar satisfeito, a Melaleuca devolve 100% do valor pago.</p>
+            <h4 class="text-lg sm:text-xl font-extrabold text-amber-800">Garantia total de satisfação de 90 dias</h4>
+            <p class="text-xs text-slate-600 mt-1 max-w-xl">Experimente os produtos na sua casa. Se não ficar satisfeito, a Melaleuca devolve 100% do valor pago.</p>
           </div>
         </div>
-        <button type="button" onclick="revealForm()" class="whitespace-nowrap bg-amber-400 hover:bg-amber-300 text-emerald-950 font-black text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all">
+        <button type="button" onclick="revealForm()" class="whitespace-nowrap bg-amber-500 hover:bg-amber-600 text-white font-black text-sm px-6 py-3.5 rounded-xl shadow-md transition-all">
           Experimentar agora <i class="fa-solid fa-angle-right ml-1" aria-hidden="true"></i>
         </button>
       </div>
@@ -198,233 +176,205 @@
   </section>
 
   <!-- ============================= COMO FUNCIONA ============================= -->
-  <section id="como-funciona" class="py-20 bg-emerald-950 text-white">
+  <section id="como-funciona" class="py-20 bg-emerald-50/60 border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest bg-emerald-900/90 border border-emerald-700/60 px-4 py-1.5 rounded-full">Como funciona o programa de sócios</span>
-        <h2 class="text-3xl sm:text-4xl font-black font-serif-display text-white mt-4 mb-3">Sem estoque, sem entregas, sem venda porta a porta</h2>
-        <p class="text-stone-300 text-sm sm:text-base leading-relaxed">Você indica o clube de compras para quem já consome esse tipo de produto no dia a dia, e a própria Melaleuca cuida do pedido e da entrega.</p>
+        <span class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-white border border-emerald-200 px-4 py-1.5 rounded-full">Como funciona o programa de sócios</span>
+        <h2 class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950 mt-4 mb-3">Sem estoque, sem entregas, sem venda porta a porta</h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Você indica o clube de compras para quem já consome esse tipo de produto no dia a dia, e a própria Melaleuca cuida do pedido e da entrega.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-stone-900/90 border border-emerald-800/60 rounded-3xl p-8 relative">
-          <span class="text-5xl font-black font-serif-display text-emerald-500/20 absolute top-6 right-6">01</span>
-          <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-emerald-950 flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
-          <h3 class="text-xl font-bold text-white mb-3">1. Torne-se Sócio</h3>
-          <p class="text-stone-300 text-sm leading-relaxed">Cadastre-se e passe a comprar seus produtos de higiene, limpeza e bem-estar direto da Melaleuca.</p>
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 relative shadow-sm">
+          <span class="text-5xl font-black font-serif-display text-emerald-100 absolute top-6 right-6">01</span>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
+          <h3 class="text-xl font-bold text-emerald-950 mb-3">1. Torne-se Sócio</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Cadastre-se e passe a comprar seus produtos de higiene, limpeza e bem-estar direto da Melaleuca.</p>
         </div>
-        <div class="bg-stone-900/90 border border-emerald-800/60 rounded-3xl p-8 relative">
-          <span class="text-5xl font-black font-serif-display text-emerald-500/20 absolute top-6 right-6">02</span>
-          <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-emerald-950 flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></div>
-          <h3 class="text-xl font-bold text-white mb-3">2. Indique o clube</h3>
-          <p class="text-stone-300 text-sm leading-relaxed">Recomende o clube de compras para amigos e familiares. Você não estoca nem entrega nada.</p>
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 relative shadow-sm">
+          <span class="text-5xl font-black font-serif-display text-emerald-100 absolute top-6 right-6">02</span>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></div>
+          <h3 class="text-xl font-bold text-emerald-950 mb-3">2. Indique o clube</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Recomende o clube de compras para amigos e familiares. Você não estoca nem entrega nada.</p>
         </div>
-        <div class="bg-stone-900/90 border border-emerald-800/60 rounded-3xl p-8 relative">
-          <span class="text-5xl font-black font-serif-display text-emerald-500/20 absolute top-6 right-6">03</span>
-          <div class="w-12 h-12 rounded-2xl bg-emerald-500 text-emerald-950 flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i></div>
-          <h3 class="text-xl font-bold text-white mb-3">3. Ganhe comissões</h3>
-          <p class="text-stone-300 text-sm leading-relaxed">Receba comissões conforme o plano oficial de compensação da Melaleuca. Fale com seu patrocinador para os detalhes completos.</p>
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 relative shadow-sm">
+          <span class="text-5xl font-black font-serif-display text-emerald-100 absolute top-6 right-6">03</span>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i></div>
+          <h3 class="text-xl font-bold text-emerald-950 mb-3">3. Ganhe comissões</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Receba comissões conforme o plano oficial de compensação da Melaleuca. Fale com seu patrocinador para os detalhes completos.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================= DEPOIMENTOS ============================= -->
-  <section id="depoimentos" class="py-20 bg-stone-950 text-white border-t border-stone-800">
+  <section id="depoimentos" class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <h2 class="text-3xl sm:text-4xl font-black font-serif-display text-white">O que os Sócios dizem sobre os produtos</h2>
-        <p class="text-stone-400 text-sm mt-2">Depoimentos ilustrativos — substitua pelos relatos reais dos seus próprios clientes.</p>
+        <h2 class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950">O que os Sócios dizem sobre os produtos</h2>
+        <p class="text-slate-500 text-sm mt-2">Depoimentos ilustrativos — substitua pelos relatos reais dos seus próprios clientes.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-stone-900 rounded-3xl p-6 border border-stone-800">
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
           <div class="text-amber-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="text-stone-300 text-sm leading-relaxed italic mb-6">"Troquei os produtos de limpeza de casa pelos concentrados da Melaleuca. Rende muito mais e não deixa aquele cheiro forte de química."</p>
-          <div class="flex items-center gap-3 pt-4 border-t border-stone-800">
-            <div class="w-11 h-11 rounded-full bg-emerald-800 text-emerald-200 flex items-center justify-center font-bold text-sm">R</div>
-            <div><p class="font-bold text-sm text-white">Roberto</p><p class="text-[11px] text-emerald-400">São Paulo, SP</p></div>
+          <p class="text-slate-600 text-sm leading-relaxed italic mb-6">"Troquei os produtos de limpeza de casa pelos concentrados da Melaleuca. Rende muito mais e não deixa aquele cheiro forte de química."</p>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">R</div>
+            <div><p class="font-bold text-sm text-emerald-950">Roberto</p><p class="text-[11px] text-emerald-700">São Paulo, SP</p></div>
           </div>
         </div>
-        <div class="bg-stone-900 rounded-3xl p-6 border border-stone-800">
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
           <div class="text-amber-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="text-stone-300 text-sm leading-relaxed italic mb-6">"Procurava produtos mais naturais para os cuidados com meus filhos. A linha de higiene virou rotina lá em casa."</p>
-          <div class="flex items-center gap-3 pt-4 border-t border-stone-800">
-            <div class="w-11 h-11 rounded-full bg-emerald-800 text-emerald-200 flex items-center justify-center font-bold text-sm">J</div>
-            <div><p class="font-bold text-sm text-white">Juliana</p><p class="text-[11px] text-emerald-400">Curitiba, PR</p></div>
+          <p class="text-slate-600 text-sm leading-relaxed italic mb-6">"Procurava produtos mais naturais para os cuidados com meus filhos. A linha de higiene virou rotina lá em casa."</p>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">J</div>
+            <div><p class="font-bold text-sm text-emerald-950">Juliana</p><p class="text-[11px] text-emerald-700">Curitiba, PR</p></div>
           </div>
         </div>
-        <div class="bg-stone-900 rounded-3xl p-6 border border-stone-800">
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
           <div class="text-amber-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p class="text-stone-300 text-sm leading-relaxed italic mb-6">"O suporte do nosso patrocinador foi muito atencioso para explicar como funciona o pedido pré-selecionado."</p>
-          <div class="flex items-center gap-3 pt-4 border-t border-stone-800">
-            <div class="w-11 h-11 rounded-full bg-emerald-800 text-emerald-200 flex items-center justify-center font-bold text-sm">C</div>
-            <div><p class="font-bold text-sm text-white">Carlos & Amanda</p><p class="text-[11px] text-emerald-400">Belo Horizonte, MG</p></div>
+          <p class="text-slate-600 text-sm leading-relaxed italic mb-6">"O suporte do nosso patrocinador foi muito atencioso para explicar como funciona o pedido pré-selecionado."</p>
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">C</div>
+            <div><p class="font-bold text-sm text-emerald-950">Carlos & Amanda</p><p class="text-[11px] text-emerald-700">Belo Horizonte, MG</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================= FORMULÁRIO (revelado sob demanda) ============================= -->
-  <section id="cadastro" class="hidden py-20 bg-gradient-to-b from-stone-900 via-emerald-950 to-stone-950">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
-      <div class="bg-stone-900 rounded-3xl shadow-2xl border border-emerald-500/30 overflow-hidden grid lg:grid-cols-12">
+  <!-- ============================= FORMULÁRIO (revelado sob demanda, largura total) ============================= -->
+  <section id="cadastro" class="hidden py-20 bg-emerald-50/60 border-t border-slate-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
+      <div class="text-center mb-8">
+        <h2 id="txt-form-heading" class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950 tr-text">Faça sua inscrição.</h2>
+      </div>
 
-        <div class="lg:col-span-5 bg-emerald-950 text-white p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
-          <div class="relative z-10 space-y-6">
-            <span id="txt-form-kicker" class="bg-amber-400 text-emerald-950 text-[11px] px-3 py-1 rounded-full font-black uppercase tracking-wider tr-text">Cadastro do novo cliente</span>
-            <h3 id="txt-header-title" class="text-2xl font-bold font-serif-display leading-snug tr-text">Formulário de Prospecção</h3>
-            <p class="text-stone-300 text-xs leading-relaxed">Preencha os dados abaixo para dar entrada no seu cadastro de Sócio Melaleuca.</p>
-            <div class="space-y-3 pt-2 text-xs text-emerald-200">
-              <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-400" aria-hidden="true"></i> Garantia de 90 dias de satisfação</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-truck-fast text-amber-400" aria-hidden="true"></i> Entrega direta na sua residência</div>
-              <div class="flex items-center gap-2"><i class="fa-solid fa-handshake-angle text-amber-400" aria-hidden="true"></i> Suporte para montar seu plano</div>
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-10 md:p-12">
+        <form id="prospectForm" novalidate class="space-y-8">
+
+          <section class="space-y-4">
+            <h2 id="txt-precheck-title" class="text-base font-bold text-emerald-950 flex items-center gap-2 border-b border-slate-200 pb-3">
+              <i class="fa-solid fa-list-check text-emerald-700" aria-hidden="true"></i>
+              Antes de enviar sua inscrição, certifique-se de que:
+            </h2>
+            <div class="space-y-3 bg-emerald-50 p-5 rounded-xl border border-emerald-100">
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <input type="checkbox" id="precheck1" required class="mt-1 h-5 w-5 text-emerald-700 focus:ring-emerald-600 border-slate-300 rounded cursor-pointer">
+                <span id="txt-check1" class="text-sm text-slate-700 group-hover:text-emerald-950 tr-text">Participou de uma apresentação institucional ou resumo de negócios.</span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <input type="checkbox" id="precheck2" required class="mt-1 h-5 w-5 text-emerald-700 focus:ring-emerald-600 border-slate-300 rounded cursor-pointer">
+                <span id="txt-check2" class="text-sm text-slate-700 group-hover:text-emerald-950 tr-text">Foi convidado para se tornar um Sócio / Membro.</span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <input type="checkbox" id="precheck3" required class="mt-1 h-5 w-5 text-emerald-700 focus:ring-emerald-600 border-slate-300 rounded cursor-pointer">
+                <span id="txt-check3" class="text-sm text-slate-700 group-hover:text-emerald-950 tr-text">Entende o conceito do Pedido Pré-selecionado e o programa de fidelidade.</span>
+              </label>
             </div>
-          </div>
-          <div class="relative z-10 pt-8 border-t border-emerald-800 mt-6 text-[11px] text-stone-400 flex items-center gap-2">
-            <i class="fa-solid fa-lock text-emerald-400" aria-hidden="true"></i>
-            <span>Dados protegidos conforme a Lei Geral de Proteção de Dados.</span>
-          </div>
-        </div>
+          </section>
 
-        <div class="lg:col-span-7 p-6 sm:p-8 md:p-10 bg-stone-900">
-          <form id="prospectForm" novalidate class="space-y-6">
+          <section class="space-y-4">
+            <h2 id="txt-info-title" class="text-base font-bold text-emerald-950 border-b border-slate-200 pb-3 flex items-center gap-2">
+              <i class="fa-solid fa-user-plus text-emerald-700" aria-hidden="true"></i>
+              Informações do Novo Cliente
+            </h2>
 
-            <section class="space-y-3">
-              <h2 id="txt-precheck-title" class="text-sm font-bold text-stone-200 flex items-center gap-2 border-b border-stone-800 pb-2">
-                <i class="fa-solid fa-list-check text-emerald-400" aria-hidden="true"></i>
-                Antes de enviar sua inscrição, certifique-se de que:
-              </h2>
-              <div class="space-y-3 bg-emerald-950/40 p-4 rounded-xl border border-emerald-800/50">
-                <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" id="precheck1" required class="mt-1 h-4 w-4 text-emerald-500 focus:ring-emerald-500 bg-stone-800 border-stone-600 rounded cursor-pointer">
-                  <span id="txt-check1" class="text-xs text-stone-300 group-hover:text-white tr-text">Participou de uma apresentação institucional ou resumo de negócios.</span>
-                </label>
-                <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" id="precheck2" required class="mt-1 h-4 w-4 text-emerald-500 focus:ring-emerald-500 bg-stone-800 border-stone-600 rounded cursor-pointer">
-                  <span id="txt-check2" class="text-xs text-stone-300 group-hover:text-white tr-text">Foi convidado para se tornar um Sócio / Membro.</span>
-                </label>
-                <label class="flex items-start gap-3 cursor-pointer group">
-                  <input type="checkbox" id="precheck3" required class="mt-1 h-4 w-4 text-emerald-500 focus:ring-emerald-500 bg-stone-800 border-stone-600 rounded cursor-pointer">
-                  <span id="txt-check3" class="text-xs text-stone-300 group-hover:text-white tr-text">Entende o conceito do Pedido Pré-selecionado e o programa de fidelidade.</span>
-                </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label id="lbl-first-name" for="firstName" class="block text-sm font-semibold text-slate-600 mb-1.5">Nome *</label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Ex: Pedro" autocomplete="given-name" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-base">
+                <p id="err-firstName" class="hidden text-xs text-red-600 mt-1"></p>
               </div>
-            </section>
-
-            <section class="space-y-3">
-              <h2 id="txt-info-title" class="text-sm font-bold text-stone-200 border-b border-stone-800 pb-2 flex items-center gap-2">
-                <i class="fa-solid fa-user-plus text-emerald-400" aria-hidden="true"></i>
-                Informações do Novo Cliente
-              </h2>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label id="lbl-first-name" for="firstName" class="block text-[11px] font-semibold uppercase tracking-wider text-stone-400 mb-1">Nome *</label>
-                  <input type="text" id="firstName" name="firstName" required placeholder="Ex: Pedro" autocomplete="given-name" class="w-full px-3 py-2.5 rounded-lg border border-stone-700 bg-stone-950 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
-                  <p id="err-firstName" class="hidden text-xs text-red-400 mt-1"></p>
-                </div>
-                <div>
-                  <label id="lbl-last-name" for="lastName" class="block text-[11px] font-semibold uppercase tracking-wider text-stone-400 mb-1">Sobrenome *</label>
-                  <input type="text" id="lastName" name="lastName" required placeholder="Ex: Silva Holanda" autocomplete="family-name" class="w-full px-3 py-2.5 rounded-lg border border-stone-700 bg-stone-950 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
-                  <p id="err-lastName" class="hidden text-xs text-red-400 mt-1"></p>
-                </div>
-                <div>
-                  <label id="lbl-email" for="email" class="block text-[11px] font-semibold uppercase tracking-wider text-stone-400 mb-1">Endereço de E-mail *</label>
-                  <input type="email" id="email" name="email" required placeholder="cliente@exemplo.com" autocomplete="email" class="w-full px-3 py-2.5 rounded-lg border border-stone-700 bg-stone-950 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
-                  <p id="err-email" class="hidden text-xs text-red-400 mt-1"></p>
-                </div>
-                <div>
-                  <label id="lbl-phone" for="phone" class="block text-[11px] font-semibold uppercase tracking-wider text-stone-400 mb-1">Telefone Celular *</label>
-                  <input type="tel" id="phone" name="phone" required placeholder="(11) 98765-4321" autocomplete="tel" class="w-full px-3 py-2.5 rounded-lg border border-stone-700 bg-stone-950 text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
-                  <p id="err-phone" class="hidden text-xs text-red-400 mt-1"></p>
-                </div>
-                <div>
-                  <label id="lbl-region-lang" for="regionLang" class="block text-[11px] font-semibold uppercase tracking-wider text-stone-400 mb-1">Região e Idioma do Cliente *</label>
-                  <select id="regionLang" name="regionLang" required class="w-full px-3 py-2.5 rounded-lg border border-stone-700 bg-stone-950 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
-                    <option value="br-pt">Brasil (português)</option>
-                    <option value="us-en">Estados Unidos (inglês)</option>
-                    <option value="us-es">Estados Unidos (español)</option>
-                    <option value="us-pt">Estados Unidos (português)</option>
-                    <option value="ca-en">Canadá (inglês)</option>
-                    <option value="ca-fr">Canadá (francês)</option>
-                    <option value="ca-pt">Canadá (português)</option>
-                    <option value="mx-es">México (español)</option>
-                    <option value="mx-pt">México (português)</option>
-                  </select>
-                </div>
-                <div>
-                  <label id="lbl-membership" for="membershipType" class="block text-[11px] font-semibold uppercase tracking-wider text-stone-400 mb-1">Tipo de Membro *</label>
-                  <select id="membershipType" name="membershipType" required class="w-full px-3 py-2.5 rounded-lg border border-stone-700 bg-stone-950 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
-                    <option value="socio">Sócio / Promoter</option>
-                  </select>
-                </div>
+              <div>
+                <label id="lbl-last-name" for="lastName" class="block text-sm font-semibold text-slate-600 mb-1.5">Sobrenome *</label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Ex: Silva Holanda" autocomplete="family-name" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-base">
+                <p id="err-lastName" class="hidden text-xs text-red-600 mt-1"></p>
               </div>
-            </section>
-
-            <section class="space-y-3">
-              <div class="p-4 bg-stone-950 rounded-xl border border-stone-800 space-y-3">
-                <label class="flex items-start gap-3 cursor-pointer">
-                  <input type="checkbox" id="acceptRule1" required class="mt-1 h-4 w-4 text-emerald-500 focus:ring-emerald-500 bg-stone-800 border-stone-600 rounded">
-                  <span id="txt-rule1" class="text-xs text-stone-300 leading-relaxed tr-text">Confirmo que assisti a Apresentação.</span>
-                </label>
-                <label class="flex items-start gap-3 cursor-pointer">
-                  <input type="checkbox" id="acceptRule2" required class="mt-1 h-4 w-4 text-emerald-500 focus:ring-emerald-500 bg-stone-800 border-stone-600 rounded">
-                  <span id="txt-rule2" class="text-xs text-stone-300 leading-relaxed tr-text">Autorizo repassar minhas informações de e-mail e telefone a Melaleuca para que eu receba o convite.</span>
-                </label>
+              <div>
+                <label id="lbl-email" for="email" class="block text-sm font-semibold text-slate-600 mb-1.5">Endereço de E-mail *</label>
+                <input type="email" id="email" name="email" required placeholder="cliente@exemplo.com" autocomplete="email" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-base">
+                <p id="err-email" class="hidden text-xs text-red-600 mt-1"></p>
               </div>
-            </section>
-
-            <section class="space-y-3">
-              <div id="error-alert" class="hidden p-3 bg-red-950/60 border border-red-800 rounded-lg text-red-300 text-xs text-center font-medium" role="alert" aria-live="assertive">
-                Por favor, preencha todos os campos obrigatórios e aceite os termos para continuar.
+              <div>
+                <label id="lbl-phone" for="phone" class="block text-sm font-semibold text-slate-600 mb-1.5">Telefone Celular *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="(11) 98765-4321" autocomplete="tel" class="w-full px-4 py-3.5 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-base">
+                <p id="err-phone" class="hidden text-xs text-red-600 mt-1"></p>
               </div>
+              <div>
+                <label id="lbl-region-lang" for="regionLang" class="block text-sm font-semibold text-slate-600 mb-1.5">Região e Idioma do Cliente *</label>
+                <select id="regionLang" name="regionLang" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-base bg-white"></select>
+              </div>
+              <div>
+                <label id="lbl-membership" for="membershipType" class="block text-sm font-semibold text-slate-600 mb-1.5">Tipo de Membro *</label>
+                <select id="membershipType" name="membershipType" required class="w-full px-4 py-3.5 rounded-xl border border-slate-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 text-base bg-white"></select>
+              </div>
+            </div>
+          </section>
 
-              <button type="button" id="btn-submit" onclick="submitForm()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-emerald-950 font-black text-base py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                <span id="btn-send-text">FINALIZAR CADASTRO</span>
-                <i class="fa-solid fa-paper-plane text-xs" aria-hidden="true"></i>
-              </button>
-            </section>
+          <section class="space-y-4">
+            <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="acceptRule1" required class="mt-1 h-5 w-5 text-emerald-700 focus:ring-emerald-600 border-slate-300 rounded">
+                <span id="txt-rule1" class="text-sm text-slate-700 leading-relaxed tr-text">Confirmo que assisti a Apresentação.</span>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" id="acceptRule2" required class="mt-1 h-5 w-5 text-emerald-700 focus:ring-emerald-600 border-slate-300 rounded">
+                <span id="txt-rule2" class="text-sm text-slate-700 leading-relaxed tr-text">Autorizo repassar minhas informações de e-mail e telefone a Melaleuca para que eu receba o convite.</span>
+              </label>
+            </div>
+          </section>
 
-          </form>
-        </div>
+          <section class="space-y-4">
+            <div id="error-alert" class="hidden p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm text-center font-medium" role="alert" aria-live="assertive">
+              Por favor, preencha todos os campos obrigatórios e aceite os termos para continuar.
+            </div>
+
+            <button type="button" id="btn-submit" onclick="submitForm()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-black text-lg py-5 rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3">
+              <span id="btn-send-text">FINALIZAR CADASTRO</span>
+              <i class="fa-solid fa-paper-plane text-base" aria-hidden="true"></i>
+            </button>
+          </section>
+
+        </form>
       </div>
     </div>
   </section>
 
   <!-- ============================= FAQ ============================= -->
-  <section id="faq" class="py-20 bg-stone-950 text-white border-t border-stone-800">
+  <section id="faq" class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest bg-emerald-950 px-4 py-1.5 rounded-full border border-emerald-800">Transparência total</span>
-        <h2 class="text-3xl font-black font-serif-display text-white mt-3">Perguntas Frequentes</h2>
+        <span class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100">Transparência total</span>
+        <h2 class="text-3xl font-black font-serif-display text-emerald-950 mt-3">Perguntas Frequentes</h2>
       </div>
 
       <div class="space-y-4">
-        <div class="border border-stone-800 rounded-2xl overflow-hidden bg-stone-900">
-          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-stone-200 flex justify-between items-center hover:bg-stone-800/50">
+        <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-emerald-950 flex justify-between items-center hover:bg-slate-50">
             <span>Eu preciso vender produtos de porta em porta?</span>
-            <i class="fa-solid fa-chevron-down text-emerald-400 transition-transform duration-300" aria-hidden="true"></i>
+            <i class="fa-solid fa-chevron-down text-emerald-700 transition-transform duration-300" aria-hidden="true"></i>
           </button>
-          <div class="faq-answer hidden px-5 pb-5 text-sm text-stone-400 leading-relaxed border-t border-stone-800 pt-3">
+          <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Não. O modelo da Melaleuca não é de revenda com catálogos. As pessoas que você indica se cadastram diretamente e compram para uso próprio; você recebe as comissões conforme o plano oficial de compensação.
           </div>
         </div>
-        <div class="border border-stone-800 rounded-2xl overflow-hidden bg-stone-900">
-          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-stone-200 flex justify-between items-center hover:bg-stone-800/50">
+        <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-emerald-950 flex justify-between items-center hover:bg-slate-50">
             <span>Como funciona a garantia de satisfação?</span>
-            <i class="fa-solid fa-chevron-down text-emerald-400 transition-transform duration-300" aria-hidden="true"></i>
+            <i class="fa-solid fa-chevron-down text-emerald-700 transition-transform duration-300" aria-hidden="true"></i>
           </button>
-          <div class="faq-answer hidden px-5 pb-5 text-sm text-stone-400 leading-relaxed border-t border-stone-800 pt-3">
+          <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             Você pode experimentar os produtos por até 90 dias. Se não ficar satisfeito, a Melaleuca devolve o valor pago, conforme a política oficial da empresa.
           </div>
         </div>
-        <div class="border border-stone-800 rounded-2xl overflow-hidden bg-stone-900">
-          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-stone-200 flex justify-between items-center hover:bg-stone-800/50">
+        <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-emerald-950 flex justify-between items-center hover:bg-slate-50">
             <span>Por que os produtos são concentrados?</span>
-            <i class="fa-solid fa-chevron-down text-emerald-400 transition-transform duration-300" aria-hidden="true"></i>
+            <i class="fa-solid fa-chevron-down text-emerald-700 transition-transform duration-300" aria-hidden="true"></i>
           </button>
-          <div class="faq-answer hidden px-5 pb-5 text-sm text-stone-400 leading-relaxed border-t border-stone-800 pt-3">
+          <div class="faq-answer hidden px-5 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
             As fórmulas superconcentradas rendem mais por uso e reduzem o volume de embalagem transportada, o que ajuda a manter o custo por aplicação mais baixo.
           </div>
         </div>
@@ -433,19 +383,19 @@
   </section>
 
   <!-- ============================= FOOTER ============================= -->
-  <footer class="bg-emerald-950 text-stone-400 py-12 border-t border-emerald-900">
+  <footer class="bg-emerald-950 text-emerald-200 py-12 border-t border-emerald-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-emerald-900/80">
+      <div class="grid md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-emerald-900">
         <div class="space-y-3">
           <img src="assets/melaleuca-logo.png" alt="Melaleuca" class="h-6 w-auto" style="filter: invert(1) brightness(2);">
-          <p class="text-xs leading-relaxed text-stone-300">Fabricante e clube de compras de bem-estar com décadas de mercado, dedicada à saúde familiar.</p>
+          <p class="text-xs leading-relaxed text-emerald-300">Fabricante e clube de compras de bem-estar com décadas de mercado, dedicada à saúde familiar.</p>
         </div>
         <div>
           <h5 class="text-white text-xs font-bold uppercase tracking-wider mb-3">Links Rápidos</h5>
           <ul class="space-y-2 text-xs">
-            <li><a href="#produtos" class="hover:text-emerald-400 transition-colors">Produtos</a></li>
-            <li><a href="#como-funciona" class="hover:text-emerald-400 transition-colors">Como Funciona</a></li>
-            <li><a href="#depoimentos" class="hover:text-emerald-400 transition-colors">Depoimentos</a></li>
+            <li><a href="#produtos" class="hover:text-white transition-colors">Produtos</a></li>
+            <li><a href="#como-funciona" class="hover:text-white transition-colors">Como Funciona</a></li>
+            <li><a href="#depoimentos" class="hover:text-white transition-colors">Depoimentos</a></li>
           </ul>
         </div>
         <div>
@@ -461,14 +411,13 @@
           <button type="button" onclick="openSupportChat()" class="text-xs text-emerald-300 font-bold hover:underline"><i class="fa-brands fa-whatsapp text-sm mr-1" aria-hidden="true"></i> Falar com o suporte</button>
         </div>
       </div>
-      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-stone-500 gap-4">
+      <div class="flex flex-col md:flex-row justify-between items-center text-xs text-emerald-500 gap-4">
         <p>&copy; 2026 Portal de Prospecção Independente. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Botão flutuante do WhatsApp (abre chat real com o suporte) -->
-  <button type="button" onclick="openSupportChat()" class="fixed bottom-6 right-6 bg-gradient-to-r from-emerald-500 to-teal-400 text-emerald-950 font-black p-4 rounded-full shadow-2xl flex items-center justify-center gap-2 z-50 transition-all transform hover:scale-105 group" aria-label="Falar no WhatsApp">
+  <button type="button" onclick="openSupportChat()" class="fixed bottom-6 right-6 bg-emerald-700 hover:bg-emerald-800 text-white font-black p-4 rounded-full shadow-2xl flex items-center justify-center gap-2 z-50 transition-all transform hover:scale-105 group" aria-label="Falar no WhatsApp">
     <i class="fa-brands fa-whatsapp text-2xl" aria-hidden="true"></i>
     <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 text-xs font-black uppercase tracking-wider">Falar no WhatsApp</span>
   </button>
@@ -508,17 +457,42 @@
     // CONFIGURAÇÃO (mesmas credenciais já usadas — não altere sem necessidade)
     // =========================================================================
     const CONFIG = {
-      GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxpYeTfwdeM2V4PWfHsB8AHWjfDHnCYpvpU3570eIIAS5HMztyLTH9_DUsghZr5cCPVVQ/exec",
+      GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwDfJ8uv0z78XvVnQlxe9zXgcMb-g3ZIuTv6J7eNOZtMRSxsQEHrQ41tXk2qehv-_ez/exec",
       SHARED_SECRET: "mel-2026-x9k",
-      WHATSAPP_SUPPORT_NUMBER: "5581988234043"
+      WHATSAPP_SUPPORT_NUMBER: "COLOQUE_AQUI_O_NUMERO_DO_WHATSAPP"
     };
 
     const VIDEO_IDS = { pt: "MeZh5WO67U0", en: "YcfHUddvJGU", es: "RPkXM3Bi17Y" };
+    const VIDEO_COVERS = { pt: "assets/cover-pt.jpg", en: "assets/cover-en.jpg", es: "assets/cover-es.jpg" };
+
+    // Opções de região/idioma: o VALOR (chave) é fixo, só o TEXTO muda com o idioma da página.
+    const REGION_OPTIONS = {
+      pt: [
+        ['br-pt', 'Brasil (português)'], ['us-en', 'Estados Unidos (inglês)'], ['us-es', 'Estados Unidos (espanhol)'],
+        ['us-pt', 'Estados Unidos (português)'], ['ca-en', 'Canadá (inglês)'], ['ca-fr', 'Canadá (francês)'],
+        ['ca-pt', 'Canadá (português)'], ['mx-es', 'México (espanhol)'], ['mx-pt', 'México (português)']
+      ],
+      es: [
+        ['br-pt', 'Brasil (portugués)'], ['us-en', 'Estados Unidos (inglés)'], ['us-es', 'EE. UU. (español)'],
+        ['us-pt', 'Estados Unidos (portugués)'], ['ca-en', 'Canadá (inglés)'], ['ca-fr', 'Canadá (francés)'],
+        ['ca-pt', 'Canadá (portugués)'], ['mx-es', 'México (español)'], ['mx-pt', 'México (portugués)']
+      ],
+      en: [
+        ['br-pt', 'Brazil (Portuguese)'], ['us-en', 'United States (English)'], ['us-es', 'United States (Spanish)'],
+        ['us-pt', 'United States (Portuguese)'], ['ca-en', 'Canada (English)'], ['ca-fr', 'Canada (French)'],
+        ['ca-pt', 'Canada (Portuguese)'], ['mx-es', 'Mexico (Spanish)'], ['mx-pt', 'Mexico (Portuguese)']
+      ]
+    };
+
+    const MEMBERSHIP_OPTIONS = {
+      pt: [['socio', 'Sócio / Promoter']],
+      es: [['socio', 'Socio / Promotor']],
+      en: [['socio', 'Member / Promoter']]
+    };
 
     const translations = {
       pt: {
-        trust1: "Garantia de satisfação de 90 dias",
-        trust2: "Mais de 40 anos de mercado",
+        trust1: "Garantia de satisfação de 90 dias", trust2: "Mais de 40 anos de mercado",
         navProdutos: "Produtos", navComoFunciona: "Como Funciona", navDepoimentos: "Depoimentos", navFaq: "Perguntas Frequentes",
         navCta: "INICIAR REGISTRO",
         heroKicker: "Bem-estar que transforma vidas",
@@ -530,7 +504,7 @@
         productsKicker: "Linha completa de produtos",
         productsTitle: "Bem-estar, limpeza e beleza em um só lugar",
         productsSub: "Produtos concentrados e biodegradáveis para o dia a dia da sua família, com a qualidade que só a Melaleuca oferece.",
-        formKicker: "Cadastro do novo cliente",
+        formHeading: "Faça sua inscrição.",
         headerTitle: "Formulário de Prospecção",
         precheckTitle: "Antes de enviar sua inscrição, certifique-se de que:",
         check1: "Participou de uma apresentação institucional ou resumo de negócios.",
@@ -558,8 +532,7 @@
         supportMessage: "Olá! Gostaria de saber mais sobre o Clube de Compras Melaleuca."
       },
       es: {
-        trust1: "Garantía de satisfacción de 90 días",
-        trust2: "Más de 40 años de mercado",
+        trust1: "Garantía de satisfacción de 90 días", trust2: "Más de 40 años de mercado",
         navProdutos: "Productos", navComoFunciona: "Cómo Funciona", navDepoimentos: "Testimonios", navFaq: "Preguntas Frecuentes",
         navCta: "INICIAR REGISTRO",
         heroKicker: "Bienestar que transforma vidas",
@@ -571,7 +544,7 @@
         productsKicker: "Línea completa de productos",
         productsTitle: "Bienestar, limpieza y belleza en un solo lugar",
         productsSub: "Productos concentrados y biodegradables para el día a día de su familia, con la calidad que solo Melaleuca ofrece.",
-        formKicker: "Registro del nuevo cliente",
+        formHeading: "Haga su inscripción.",
         headerTitle: "Formulario de Prospección",
         precheckTitle: "Antes de enviar su inscripción, asegúrese de que:",
         check1: "Ha participado en una presentación oficial o resumen de negocio.",
@@ -599,8 +572,7 @@
         supportMessage: "¡Hola! Me gustaría saber más sobre el Club de Compras Melaleuca."
       },
       en: {
-        trust1: "90-day satisfaction guarantee",
-        trust2: "Over 40 years in business",
+        trust1: "90-day satisfaction guarantee", trust2: "Over 40 years in business",
         navProdutos: "Products", navComoFunciona: "How It Works", navDepoimentos: "Testimonials", navFaq: "FAQ",
         navCta: "START REGISTRATION",
         heroKicker: "Wellness that transforms lives",
@@ -612,7 +584,7 @@
         productsKicker: "A full line of products",
         productsTitle: "Wellness, cleaning, and beauty all in one place",
         productsSub: "Concentrated, biodegradable products for your family's everyday life, with the quality only Melaleuca offers.",
-        formKicker: "New customer registration",
+        formHeading: "Sign up now.",
         headerTitle: "Prospecting Form",
         precheckTitle: "Before submitting your registration, make sure that:",
         check1: "You have attended an official presentation or business summary.",
@@ -646,6 +618,21 @@
     let lastSubmission = null;
     let heroVideoStarted = false;
 
+    function populateSelect(selectId, optionsList, keepValue) {
+      const select = document.getElementById(selectId);
+      const previousValue = keepValue ? select.value : null;
+      select.innerHTML = '';
+      optionsList.forEach(([value, label]) => {
+        const opt = document.createElement('option');
+        opt.value = value;
+        opt.textContent = label;
+        select.appendChild(opt);
+      });
+      if (previousValue) {
+        select.value = previousValue;
+      }
+    }
+
     function getEmbedUrl(lang) {
       return `https://www.youtube.com/embed/${VIDEO_IDS[lang]}?autoplay=1`;
     }
@@ -669,16 +656,16 @@
       ['pt', 'es', 'en'].forEach(l => {
         const btn = document.getElementById(`lang-btn-${l}`);
         if (l === lang) {
-          btn.className = "px-2.5 py-1 rounded-md text-xs font-bold transition-all bg-white text-emerald-950 shadow-sm";
+          btn.className = "px-2.5 py-1 rounded-md text-xs font-bold transition-all bg-emerald-900 text-white shadow-sm";
           btn.setAttribute('aria-pressed', 'true');
         } else {
-          btn.className = "px-2.5 py-1 rounded-md text-xs font-bold transition-all text-emerald-100 hover:bg-white/10";
+          btn.className = "px-2.5 py-1 rounded-md text-xs font-bold transition-all text-slate-500 hover:bg-slate-200";
           btn.setAttribute('aria-pressed', 'false');
         }
       });
 
-      document.getElementById('txt-trust-1').innerHTML = `<i class="fa-solid fa-shield-halved text-amber-400" aria-hidden="true"></i> ${t.trust1}`;
-      document.getElementById('txt-trust-2').innerHTML = `<i class="fa-solid fa-leaf text-amber-400" aria-hidden="true"></i> ${t.trust2}`;
+      document.getElementById('txt-trust-1').innerHTML = `<i class="fa-solid fa-shield-halved text-amber-300" aria-hidden="true"></i> ${t.trust1}`;
+      document.getElementById('txt-trust-2').innerHTML = `<i class="fa-solid fa-leaf text-amber-300" aria-hidden="true"></i> ${t.trust2}`;
       document.getElementById('nav-produtos').innerText = t.navProdutos;
       document.getElementById('nav-como-funciona').innerText = t.navComoFunciona;
       document.getElementById('nav-depoimentos').innerText = t.navDepoimentos;
@@ -693,9 +680,12 @@
       document.getElementById('txt-pill-3').innerText = t.pill3;
       document.getElementById('txt-hero-cta-1').innerText = t.heroCta1;
       document.getElementById('txt-hero-cta-2').innerText = t.heroCta2;
-      document.getElementById('txt-video-cta').innerHTML = `<i class="fa-solid fa-circle-play text-emerald-400 mr-2" aria-hidden="true"></i> ${t.videoCta}`;
+      document.getElementById('txt-video-cta').innerHTML = `<i class="fa-solid fa-circle-play text-emerald-300 mr-2" aria-hidden="true"></i> ${t.videoCta}`;
       document.getElementById('txt-video-caption').innerText = t.videoCaption;
-      if (heroVideoStarted) {
+
+      if (!heroVideoStarted) {
+        document.getElementById('video-cover').src = VIDEO_COVERS[lang];
+      } else {
         document.getElementById('hero-iframe').src = getEmbedUrl(lang);
       }
 
@@ -703,8 +693,7 @@
       document.getElementById('txt-products-title').innerText = t.productsTitle;
       document.getElementById('txt-products-sub').innerText = t.productsSub;
 
-      document.getElementById('txt-form-kicker').innerText = t.formKicker;
-      document.getElementById('txt-header-title').innerText = t.headerTitle;
+      document.getElementById('txt-form-heading').innerText = t.formHeading;
       document.getElementById('txt-precheck-title').innerText = t.precheckTitle;
       document.getElementById('txt-check1').innerText = t.check1;
       document.getElementById('txt-check2').innerText = t.check2;
@@ -722,6 +711,9 @@
         document.getElementById('btn-send-text').innerText = t.startBtn;
       }
       document.getElementById('error-alert').innerText = t.errorMessage;
+
+      populateSelect('regionLang', REGION_OPTIONS[lang], true);
+      populateSelect('membershipType', MEMBERSHIP_OPTIONS[lang], true);
 
       document.getElementById('txt-pdf-btn').innerText = t.pdfBtn;
       document.getElementById('txt-whatsapp-btn').innerText = t.whatsappBtn;
@@ -872,7 +864,12 @@
         secret: CONFIG.SHARED_SECRET,
         timestamp: new Date().toISOString(),
         referenceCode, firstName, lastName, email, phone,
-        regionLang, regionLangLabel, membershipType, membershipLabel
+        regionLang, regionLangLabel, membershipType, membershipLabel,
+        // Termos de aceite (registrados para fins de auditoria/consentimento)
+        acceptedPresentation: document.getElementById('acceptRule1').checked,
+        acceptedDataSharing: document.getElementById('acceptRule2').checked,
+        acceptedPresentationText: document.getElementById('txt-rule1').innerText,
+        acceptedDataSharingText: document.getElementById('txt-rule2').innerText
       };
 
       const result = await sendToGoogleSheets(payload);
@@ -972,6 +969,10 @@
       closeModal();
       document.getElementById('firstName').focus();
     }
+
+    // Inicializa os selects de região/idioma e tipo de membro no idioma padrão (PT)
+    populateSelect('regionLang', REGION_OPTIONS.pt, false);
+    populateSelect('membershipType', MEMBERSHIP_OPTIONS.pt, false);
   </script>
 </body>
 </html>
