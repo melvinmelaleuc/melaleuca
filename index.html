@@ -457,7 +457,7 @@
     // CONFIGURAÇÃO (mesmas credenciais já usadas — não altere sem necessidade)
     // =========================================================================
     const CONFIG = {
-      GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbw98dHduKW4Gy_KP8lUhiVPCaAj-KAXFe0USSHqe625LFeEvj0T9NFQaQSfC0LJC4lHLA/exec",
+      GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzjswyjcY5-q1kD-SQtHvpOTIIphPY_nIYIUSz4rWcUjrI3HtR7jngJLFd0_FLn87t4VQ/exec",
       SHARED_SECRET: "mel-2026-x9k",
       WHATSAPP_SUPPORT_NUMBER: "COLOQUE_AQUI_O_NUMERO_DO_WHATSAPP"
     };
@@ -489,6 +489,25 @@
       es: [['socio', 'Socio / Promotor']],
       en: [['socio', 'Member / Promoter']]
     };
+
+    // Formato de telefone conforme a região do cliente (nunca usa o formato
+    // brasileiro fora do Brasil).
+    const PHONE_FORMATS = {
+      'br-pt': '(11) 98765-4321',
+      'us-en': '(555) 123-4567',
+      'us-es': '(555) 123-4567',
+      'us-pt': '(555) 123-4567',
+      'ca-en': '(555) 123-4567',
+      'ca-fr': '(555) 123-4567',
+      'ca-pt': '(555) 123-4567',
+      'mx-es': '(55) 1234-5678',
+      'mx-pt': '(55) 1234-5678'
+    };
+
+    function updatePhonePlaceholder() {
+      const regionLang = document.getElementById('regionLang').value;
+      document.getElementById('phone').placeholder = PHONE_FORMATS[regionLang] || PHONE_FORMATS['br-pt'];
+    }
 
     const translations = {
       pt: {
@@ -714,6 +733,7 @@
 
       populateSelect('regionLang', REGION_OPTIONS[lang], true);
       populateSelect('membershipType', MEMBERSHIP_OPTIONS[lang], true);
+      updatePhonePlaceholder();
 
       document.getElementById('txt-pdf-btn').innerText = t.pdfBtn;
       document.getElementById('txt-whatsapp-btn').innerText = t.whatsappBtn;
@@ -865,11 +885,12 @@
         timestamp: new Date().toISOString(),
         referenceCode, firstName, lastName, email, phone,
         regionLang, regionLangLabel, membershipType, membershipLabel,
-        // Termos de aceite (registrados para fins de auditoria/consentimento)
+        // Termos de aceite / pré-requisitos (registrados para fins de auditoria e consentimento)
+        confirmedAttendedPresentation: document.getElementById('precheck1').checked,
+        confirmedInvitedAsMember: document.getElementById('precheck2').checked,
+        confirmedUnderstandsPreferredOrder: document.getElementById('precheck3').checked,
         acceptedPresentation: document.getElementById('acceptRule1').checked,
-        acceptedDataSharing: document.getElementById('acceptRule2').checked,
-        acceptedPresentationText: document.getElementById('txt-rule1').innerText,
-        acceptedDataSharingText: document.getElementById('txt-rule2').innerText
+        acceptedDataSharing: document.getElementById('acceptRule2').checked
       };
 
       const result = await sendToGoogleSheets(payload);
@@ -973,6 +994,8 @@
     // Inicializa os selects de região/idioma e tipo de membro no idioma padrão (PT)
     populateSelect('regionLang', REGION_OPTIONS.pt, false);
     populateSelect('membershipType', MEMBERSHIP_OPTIONS.pt, false);
+    updatePhonePlaceholder();
+    document.getElementById('regionLang').addEventListener('change', updatePhonePlaceholder);
   </script>
 </body>
 </html>
