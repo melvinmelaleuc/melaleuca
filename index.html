@@ -6,13 +6,13 @@
   <title>Melaleuca Wellness Club | Bem-estar & Oportunidade</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
   <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background:#FFFFFF; color:#1c2521; }
-    .font-serif-display { font-family: 'Playfair Display', serif; }
+    body { font-family: 'Manrope', sans-serif; background:#FFFFFF; color:#1c2521; }
+    .font-serif-display { font-family: 'Instrument Serif', serif; font-style: italic; }
     .pulse-badge { box-shadow: 0 0 0 0 rgba(6, 95, 70, 0.5); animation: pulse-green 2s infinite; }
     @keyframes pulse-green {
       0% { box-shadow: 0 0 0 0 rgba(6, 95, 70, 0.5); }
@@ -39,18 +39,18 @@
     </div>
   </div>
 
-  <!-- ============================= HEADER ============================= -->
-  <header class="bg-white/90 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-40">
+  <!-- ============================= HEADER (menu enxuto) ============================= -->
+  <header class="bg-white/95 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
       <a href="#top" class="flex items-center gap-3 shrink-0">
         <img src="assets/melaleuca-logo.png" alt="Melaleuca" class="h-7 sm:h-8 w-auto">
       </a>
 
-      <nav class="hidden lg:flex items-center gap-7 font-medium text-slate-600 text-sm">
+      <nav class="hidden lg:flex items-center gap-8 font-semibold text-slate-600 text-sm">
         <a id="nav-produtos" href="#produtos" class="hover:text-emerald-700 transition-colors">Produtos</a>
         <a id="nav-como-funciona" href="#como-funciona" class="hover:text-emerald-700 transition-colors">Como Funciona</a>
         <a id="nav-depoimentos" href="#depoimentos" class="hover:text-emerald-700 transition-colors">Depoimentos</a>
-        <a id="nav-faq" href="#faq" class="hover:text-emerald-700 transition-colors">Perguntas Frequentes</a>
+        <a id="nav-faq" href="#faq" class="hover:text-emerald-700 transition-colors">FAQ</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -66,7 +66,7 @@
     </div>
   </header>
 
-  <!-- ============================= HERO ============================= -->
+  <!-- ============================= HERO (2 colunas, tema claro) ============================= -->
   <section id="top" class="relative bg-gradient-to-b from-emerald-50 via-white to-white overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid lg:grid-cols-12 gap-12 items-center">
@@ -77,11 +77,11 @@
             Bem-estar que transforma vidas
           </span>
 
-          <h1 id="txt-hero-headline" class="text-4xl sm:text-5xl lg:text-[2.75rem] font-black font-serif-display leading-[1.12] text-emerald-950 tr-text">
+          <h1 id="txt-hero-headline" class="text-4xl sm:text-5xl lg:text-[3rem] font-normal font-serif-display leading-[1.1] text-emerald-950 tr-text">
             Produtos naturais para a sua casa, sua saúde e uma oportunidade real de crescer.
           </h1>
 
-          <p id="txt-hero-sub" class="text-slate-600 text-base sm:text-lg font-light leading-relaxed max-w-xl mx-auto lg:mx-0 tr-text">
+          <p id="txt-hero-sub" class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 tr-text">
             Assista ao vídeo, conheça a Melaleuca e comece seu cadastro de sócio em poucos minutos.
           </p>
 
@@ -137,25 +137,79 @@
     </div>
   </section>
 
+  <!-- ============================= PROBLEMA x SOLUÇÃO (linguagem moderada) ============================= -->
+  <section class="py-20 bg-emerald-50/60 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-white border border-emerald-200 px-4 py-1.5 rounded-full">Compra tradicional vs. Clube Melaleuca</span>
+        <h2 class="text-3xl sm:text-4xl font-normal font-serif-display text-emerald-950 mt-4 mb-3">Uma forma diferente de comprar o que sua casa já usa</h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Ao invés de passar pelo supermercado tradicional, você compra direto da fábrica — com fórmulas concentradas e um programa de fidelidade que devolve algo em troca.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-500 flex items-center justify-center text-2xl"><i class="fa-solid fa-store" aria-hidden="true"></i></div>
+              <div>
+                <h3 class="text-lg font-extrabold text-slate-800">Supermercado tradicional</h3>
+                <p class="text-xs text-slate-400">Modelo com vários intermediários</p>
+              </div>
+            </div>
+            <ul class="space-y-4 text-sm text-slate-600">
+              <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-slate-400 mt-1" aria-hidden="true"></i><span>Preço final inclui várias camadas de distribuição e publicidade.</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-slate-400 mt-1" aria-hidden="true"></i><span>Fórmulas diluídas, pensadas para prateleira, não para concentração.</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-slate-400 mt-1" aria-hidden="true"></i><span>Nenhum programa de fidelidade ou retorno pelo consumo recorrente.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-emerald-200 rounded-3xl p-8 flex flex-col justify-between shadow-md">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-2xl"><i class="fa-solid fa-industry" aria-hidden="true"></i></div>
+              <div>
+                <h3 class="text-lg font-extrabold text-emerald-950">Clube de Compras Melaleuca</h3>
+                <p class="text-xs text-emerald-700 font-semibold">Direto da fábrica para sua casa</p>
+              </div>
+            </div>
+            <ul class="space-y-4 text-sm text-slate-700">
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-600 mt-1" aria-hidden="true"></i><span>Compra direto da fábrica, sem os intermediários da cadeia tradicional.</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-600 mt-1" aria-hidden="true"></i><span>Mais de 400 produtos concentrados e biodegradáveis.</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-600 mt-1" aria-hidden="true"></i><span>Programa de fidelidade com benefícios crescentes a cada pedido.</span></li>
+              <li class="flex items-start gap-3"><i class="fa-solid fa-check text-emerald-600 mt-1" aria-hidden="true"></i><span>Garantia de satisfação de 90 dias em toda a linha.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= PRODUTOS ============================= -->
   <section id="produtos" class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
         <span id="txt-products-kicker" class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100 tr-text">Linha completa de produtos</span>
-        <h2 id="txt-products-title" class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950 mt-4 mb-3 tr-text">Bem-estar, limpeza e beleza em um só lugar</h2>
+        <h2 id="txt-products-title" class="text-3xl sm:text-4xl font-normal font-serif-display text-emerald-950 mt-4 mb-3 tr-text">Bem-estar, limpeza e beleza em um só lugar</h2>
         <p id="txt-products-sub" class="text-slate-500 text-sm sm:text-base tr-text">Produtos concentrados e biodegradáveis para o dia a dia da sua família, com a qualidade que só a Melaleuca oferece.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-          <img src="assets/products-1.png" alt="Linha de limpeza e cuidados pessoais Melaleuca" class="w-full h-64 object-contain p-6">
-        </div>
-        <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-          <img src="assets/products-2.webp" alt="Linha de beleza e nutrição Melaleuca" class="w-full h-64 object-contain p-6">
-        </div>
-        <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all">
-          <img src="assets/products-3.webp" alt="Linha de nutrição esportiva e casa Melaleuca" class="w-full h-64 object-contain p-6">
-        </div>
+        <button type="button" onclick="revealForm()" class="relative rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all h-72 text-left group">
+          <img src="assets/products-1.png" alt="Linha de limpeza e cuidados pessoais Melaleuca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <span id="txt-cat-1" class="absolute bottom-5 left-5 text-white font-bold text-lg tr-text">Limpeza & Casa</span>
+        </button>
+        <button type="button" onclick="revealForm()" class="relative rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all h-72 text-left group">
+          <img src="assets/products-2.webp" alt="Linha de beleza e nutrição Melaleuca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <span id="txt-cat-2" class="absolute bottom-5 left-5 text-white font-bold text-lg tr-text">Beleza & Cuidados</span>
+        </button>
+        <button type="button" onclick="revealForm()" class="relative rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all h-72 text-left group">
+          <img src="assets/products-3.webp" alt="Linha de nutrição esportiva e casa Melaleuca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+          <span id="txt-cat-3" class="absolute bottom-5 left-5 text-white font-bold text-lg tr-text">Nutrição & Bem-estar</span>
+        </button>
       </div>
 
       <div class="mt-12 bg-gradient-to-r from-amber-50 via-emerald-50 to-amber-50 border border-amber-200 rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -180,25 +234,25 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
         <span class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-white border border-emerald-200 px-4 py-1.5 rounded-full">Como funciona o programa de sócios</span>
-        <h2 class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950 mt-4 mb-3">Sem estoque, sem entregas, sem venda porta a porta</h2>
+        <h2 class="text-3xl sm:text-4xl font-normal font-serif-display text-emerald-950 mt-4 mb-3">Sem estoque, sem entregas, sem venda porta a porta</h2>
         <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Você indica o clube de compras para quem já consome esse tipo de produto no dia a dia, e a própria Melaleuca cuida do pedido e da entrega.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white border border-slate-200 rounded-3xl p-8 relative shadow-sm">
-          <span class="text-5xl font-black font-serif-display text-emerald-100 absolute top-6 right-6">01</span>
+          <span class="text-5xl font-normal font-serif-display text-emerald-100 absolute top-6 right-6">01</span>
           <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div>
           <h3 class="text-xl font-bold text-emerald-950 mb-3">1. Torne-se Sócio</h3>
           <p class="text-slate-600 text-sm leading-relaxed">Cadastre-se e passe a comprar seus produtos de higiene, limpeza e bem-estar direto da Melaleuca.</p>
         </div>
         <div class="bg-white border border-slate-200 rounded-3xl p-8 relative shadow-sm">
-          <span class="text-5xl font-black font-serif-display text-emerald-100 absolute top-6 right-6">02</span>
+          <span class="text-5xl font-normal font-serif-display text-emerald-100 absolute top-6 right-6">02</span>
           <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></div>
           <h3 class="text-xl font-bold text-emerald-950 mb-3">2. Indique o clube</h3>
           <p class="text-slate-600 text-sm leading-relaxed">Recomende o clube de compras para amigos e familiares. Você não estoca nem entrega nada.</p>
         </div>
         <div class="bg-white border border-slate-200 rounded-3xl p-8 relative shadow-sm">
-          <span class="text-5xl font-black font-serif-display text-emerald-100 absolute top-6 right-6">03</span>
+          <span class="text-5xl font-normal font-serif-display text-emerald-100 absolute top-6 right-6">03</span>
           <div class="w-12 h-12 rounded-2xl bg-emerald-700 text-white flex items-center justify-center text-xl font-bold mb-6"><i class="fa-solid fa-sack-dollar" aria-hidden="true"></i></div>
           <h3 class="text-xl font-bold text-emerald-950 mb-3">3. Ganhe comissões</h3>
           <p class="text-slate-600 text-sm leading-relaxed">Receba comissões conforme o plano oficial de compensação da Melaleuca. Fale com seu patrocinador para os detalhes completos.</p>
@@ -207,11 +261,11 @@
     </div>
   </section>
 
-  <!-- ============================= DEPOIMENTOS ============================= -->
+  <!-- ============================= DEPOIMENTOS (fotos preservadas) ============================= -->
   <section id="depoimentos" class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
-        <h2 class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950">O que os Sócios dizem sobre os produtos</h2>
+        <h2 class="text-3xl sm:text-4xl font-normal font-serif-display text-emerald-950">O que os Sócios dizem sobre os produtos</h2>
         <p class="text-slate-500 text-sm mt-2">Depoimentos ilustrativos — substitua pelos relatos reais dos seus próprios clientes.</p>
       </div>
 
@@ -220,7 +274,7 @@
           <div class="text-amber-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p class="text-slate-600 text-sm leading-relaxed italic mb-6">"Troquei os produtos de limpeza de casa pelos concentrados da Melaleuca. Rende muito mais e não deixa aquele cheiro forte de química."</p>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">R</div>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120" alt="Roberto" class="w-11 h-11 rounded-full object-cover border border-emerald-200">
             <div><p class="font-bold text-sm text-emerald-950">Roberto</p><p class="text-[11px] text-emerald-700">São Paulo, SP</p></div>
           </div>
         </div>
@@ -228,7 +282,7 @@
           <div class="text-amber-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p class="text-slate-600 text-sm leading-relaxed italic mb-6">"Procurava produtos mais naturais para os cuidados com meus filhos. A linha de higiene virou rotina lá em casa."</p>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">J</div>
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" alt="Juliana" class="w-11 h-11 rounded-full object-cover border border-emerald-200">
             <div><p class="font-bold text-sm text-emerald-950">Juliana</p><p class="text-[11px] text-emerald-700">Curitiba, PR</p></div>
           </div>
         </div>
@@ -236,7 +290,7 @@
           <div class="text-amber-400 mb-4 text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p class="text-slate-600 text-sm leading-relaxed italic mb-6">"O suporte do nosso patrocinador foi muito atencioso para explicar como funciona o pedido pré-selecionado."</p>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
-            <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">C</div>
+            <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&q=80&w=120" alt="Carlos e Amanda" class="w-11 h-11 rounded-full object-cover border border-emerald-200">
             <div><p class="font-bold text-sm text-emerald-950">Carlos & Amanda</p><p class="text-[11px] text-emerald-700">Belo Horizonte, MG</p></div>
           </div>
         </div>
@@ -244,11 +298,11 @@
     </div>
   </section>
 
-  <!-- ============================= FORMULÁRIO (revelado sob demanda, largura total) ============================= -->
+  <!-- ============================= FORMULÁRIO (largura total, revelado sob demanda) ============================= -->
   <section id="cadastro" class="hidden py-20 bg-emerald-50/60 border-t border-slate-100">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 fade-in">
       <div class="text-center mb-8">
-        <h2 id="txt-form-heading" class="text-3xl sm:text-4xl font-black font-serif-display text-emerald-950 tr-text">Faça sua inscrição.</h2>
+        <h2 id="txt-form-heading" class="text-3xl sm:text-4xl font-normal font-serif-display text-emerald-950 tr-text">Faça sua inscrição.</h2>
       </div>
 
       <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-10 md:p-12">
@@ -347,7 +401,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
         <span class="text-emerald-800 font-extrabold text-xs uppercase tracking-widest bg-emerald-50 px-4 py-1.5 rounded-full border border-emerald-100">Transparência total</span>
-        <h2 class="text-3xl font-black font-serif-display text-emerald-950 mt-3">Perguntas Frequentes</h2>
+        <h2 class="text-3xl font-normal font-serif-display text-emerald-950 mt-3">Perguntas Frequentes</h2>
       </div>
 
       <div class="space-y-4">
@@ -459,7 +513,7 @@
     const CONFIG = {
       GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzntekhHcCcrGo1i6FblJqt_hScphO9B18nefAe97VL_RhWZdETP8Ygtpr_3sHPXjsT/exec",
       SHARED_SECRET: "mel-2026-x9k",
-      WHATSAPP_SUPPORT_NUMBER: "COLOQUE_AQUI_O_NUMERO_DO_WHATSAPP"
+      WHATSAPP_SUPPORT_NUMBER: "17144618507"
     };
 
     const VIDEO_IDS = { pt: "MeZh5WO67U0", en: "YcfHUddvJGU", es: "RPkXM3Bi17Y" };
@@ -523,6 +577,7 @@
         productsKicker: "Linha completa de produtos",
         productsTitle: "Bem-estar, limpeza e beleza em um só lugar",
         productsSub: "Produtos concentrados e biodegradáveis para o dia a dia da sua família, com a qualidade que só a Melaleuca oferece.",
+        cat1: "Limpeza & Casa", cat2: "Beleza & Cuidados", cat3: "Nutrição & Bem-estar",
         formHeading: "Faça sua inscrição.",
         headerTitle: "Formulário de Prospecção",
         precheckTitle: "Antes de enviar sua inscrição, certifique-se de que:",
@@ -563,6 +618,7 @@
         productsKicker: "Línea completa de productos",
         productsTitle: "Bienestar, limpieza y belleza en un solo lugar",
         productsSub: "Productos concentrados y biodegradables para el día a día de su familia, con la calidad que solo Melaleuca ofrece.",
+        cat1: "Limpieza & Hogar", cat2: "Belleza & Cuidado Personal", cat3: "Nutrición & Bienestar",
         formHeading: "Haga su inscripción.",
         headerTitle: "Formulario de Prospección",
         precheckTitle: "Antes de enviar su inscripción, asegúrese de que:",
@@ -603,6 +659,7 @@
         productsKicker: "A full line of products",
         productsTitle: "Wellness, cleaning, and beauty all in one place",
         productsSub: "Concentrated, biodegradable products for your family's everyday life, with the quality only Melaleuca offers.",
+        cat1: "Cleaning & Home", cat2: "Beauty & Personal Care", cat3: "Nutrition & Wellness",
         formHeading: "Sign up now.",
         headerTitle: "Prospecting Form",
         precheckTitle: "Before submitting your registration, make sure that:",
@@ -711,6 +768,9 @@
       document.getElementById('txt-products-kicker').innerText = t.productsKicker;
       document.getElementById('txt-products-title').innerText = t.productsTitle;
       document.getElementById('txt-products-sub').innerText = t.productsSub;
+      document.getElementById('txt-cat-1').innerText = t.cat1;
+      document.getElementById('txt-cat-2').innerText = t.cat2;
+      document.getElementById('txt-cat-3').innerText = t.cat3;
 
       document.getElementById('txt-form-heading').innerText = t.formHeading;
       document.getElementById('txt-precheck-title').innerText = t.precheckTitle;
@@ -962,7 +1022,7 @@
       const t = translations[currentLang];
       const number = CONFIG.WHATSAPP_SUPPORT_NUMBER;
 
-      if (!number || number.indexOf('COLOQUE_AQUI') !== -1) {
+      if (!number || number.indexOf('17144618507') !== -1) {
         alert(t.whatsappNotConfigured);
         return;
       }
@@ -997,5 +1057,5 @@
     updatePhonePlaceholder();
     document.getElementById('regionLang').addEventListener('change', updatePhonePlaceholder);
   </script>
-</body>
+  </body>
 </html>
