@@ -26,9 +26,37 @@
     .fade-in { animation: fadeIn 0.4s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .tr-text { transition: opacity 0.15s ease-in-out; }
+
+    /* Social Proof Notification Animations */
+    @keyframes slideInProof {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideOutProof {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(20px); opacity: 0; }
+    }
+    .proof-toast {
+      animation: slideInProof 0.4s ease-out forwards;
+    }
+    .proof-toast.proof-toast-leaving {
+      animation: slideOutProof 0.4s ease-in forwards;
+    }
+    .proof-pulse-dot {
+      box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.6);
+      animation: proofPulse 2s infinite;
+    }
+    @keyframes proofPulse {
+      0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.6); }
+      70% { box-shadow: 0 0 0 6px rgba(5, 150, 105, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-emerald-100">
+
+  <!-- Social Proof Notifications Container -->
+  <div id="social-proof-container" class="fixed bottom-3 left-3 right-3 sm:right-auto z-40 flex flex-col gap-2 sm:max-w-[300px] pointer-events-none"></div>
 
   <!-- ============================= TRUST BAR ============================= -->
   <div class="bg-emerald-900 text-emerald-50 py-2.5 px-4 text-xs md:text-sm font-medium">
@@ -275,7 +303,7 @@
           <p id="txt-dep-q1" class="text-slate-600 text-sm leading-relaxed italic mb-6 tr-text">"Troquei os produtos de limpeza de casa pelos concentrados da Melaleuca. Rende muito mais e não deixa aquele cheiro forte de química."</p>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120" alt="Roberto" class="w-11 h-11 rounded-full object-cover border border-emerald-200">
-            <div><p class="font-bold text-sm text-emerald-950">Roberto</p><p id="txt-dep-city1" class="text-[11px] text-emerald-700 tr-text">Phoenix, AZ</p></div>
+            <div><p class="font-bold text-sm text-emerald-950">Roberto</p><p id="txt-dep-city1" class="text-[11px] text-emerald-700 tr-text">São Paulo, SP</p></div>
           </div>
         </div>
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
@@ -283,7 +311,7 @@
           <p id="txt-dep-q2" class="text-slate-600 text-sm leading-relaxed italic mb-6 tr-text">"Procurava produtos mais naturais para os cuidados com meus filhos. A linha de higiene virou rotina lá em casa."</p>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
             <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" alt="Juliana" class="w-11 h-11 rounded-full object-cover border border-emerald-200">
-            <div><p class="font-bold text-sm text-emerald-950">Juliana</p><p id="txt-dep-city2" class="text-[11px] text-emerald-700 tr-text">Salt Lake, Utah</p></div>
+            <div><p class="font-bold text-sm text-emerald-950">Juliana</p><p id="txt-dep-city2" class="text-[11px] text-emerald-700 tr-text">Curitiba, PR</p></div>
           </div>
         </div>
         <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
@@ -291,7 +319,7 @@
           <p id="txt-dep-q3" class="text-slate-600 text-sm leading-relaxed italic mb-6 tr-text">"O suporte do nosso patrocinador foi muito atencioso para explicar como funciona o pedido pré-selecionado."</p>
           <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
             <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&q=80&w=120" alt="Carlos e Amanda" class="w-11 h-11 rounded-full object-cover border border-emerald-200">
-            <div><p class="font-bold text-sm text-emerald-950">Carlos & Amanda</p><p id="txt-dep-city3" class="text-[11px] text-emerald-700 tr-text">Las Vegas, NV</p></div>
+            <div><p class="font-bold text-sm text-emerald-950">Carlos & Amanda</p><p id="txt-dep-city3" class="text-[11px] text-emerald-700 tr-text">Belo Horizonte, MG</p></div>
           </div>
         </div>
       </div>
@@ -1245,6 +1273,189 @@
     populateSelect('membershipType', MEMBERSHIP_OPTIONS.pt, false);
     updatePhonePlaceholder();
     document.getElementById('regionLang').addEventListener('change', updatePhonePlaceholder);
+
+    // ==========================================================
+    // MOTOR DE NOTIFICAÇÕES DE PROVA SOCIAL (EUA, Canadá e México)
+    // ==========================================================
+    const proofCities = [
+      // Estados Unidos — cidades conhecidas
+      { city: "Miami", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Los Angeles", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Orlando", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Houston", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Dallas", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Chicago", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Nova York", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Phoenix", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "San Diego", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Atlanta", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Las Vegas", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Tampa", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Boston", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Seattle", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Denver", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      // Estados Unidos — cidades menos conhecidas
+      { city: "Boise", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Tulsa", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Fresno", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Albuquerque", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Chattanooga", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Spokane", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Akron", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      { city: "Baton Rouge", country: "EUA", countryEn: "USA", countryEs: "EE.UU.", flag: "🇺🇸" },
+      // Canadá — cidades conhecidas
+      { city: "Toronto", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Vancouver", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Montreal", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Calgary", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Ottawa", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Edmonton", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      // Canadá — cidades menos conhecidas
+      { city: "Winnipeg", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Saskatoon", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Halifax", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Victoria", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Kelowna", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      { city: "Sherbrooke", country: "Canadá", countryEn: "Canada", countryEs: "Canadá", flag: "🇨🇦" },
+      // México — cidades conhecidas
+      { city: "Cidade do México", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Guadalajara", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Monterrey", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Tijuana", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Cancún", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Puebla", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      // México — cidades menos conhecidas
+      { city: "Mérida", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Querétaro", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Toluca", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Aguascalientes", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Culiacán", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" },
+      { city: "Hermosillo", country: "México", countryEn: "Mexico", countryEs: "México", flag: "🇲🇽" }
+    ];
+
+    const proofTexts = {
+      pt: {
+        singular: (city, country, flag) => `<strong>1 pessoa</strong> de ${city}, ${flag} ${country} acabou de se registrar`,
+        plural:   (n, city, country, flag) => `<strong>${n} pessoas</strong> de ${city}, ${flag} ${country} acabaram de se registrar`,
+        timeAgo: "agora mesmo"
+      },
+      en: {
+        singular: (city, country, flag) => `<strong>1 person</strong> from ${city}, ${flag} ${country} just registered`,
+        plural:   (n, city, country, flag) => `<strong>${n} people</strong> from ${city}, ${flag} ${country} just registered`,
+        timeAgo: "just now"
+      },
+      es: {
+        singular: (city, country, flag) => `<strong>1 persona</strong> de ${city}, ${flag} ${country} acaba de registrarse`,
+        plural:   (n, city, country, flag) => `<strong>${n} personas</strong> de ${city}, ${flag} ${country} acaban de registrarse`,
+        timeAgo: "justo ahora"
+      }
+    };
+
+    function getCountryNameForLang(place) {
+      if (currentLang === 'en') return place.countryEn;
+      if (currentLang === 'es') return place.countryEs;
+      return place.country;
+    }
+
+    function buildProofMessage(minCount, maxCount) {
+      const place = proofCities[Math.floor(Math.random() * proofCities.length)];
+      const count = Math.floor(Math.random() * (maxCount - minCount + 1)) + minCount;
+      const t = proofTexts[currentLang] || proofTexts.pt;
+      const countryName = getCountryNameForLang(place);
+      const text = count === 1
+        ? t.singular(place.city, countryName, place.flag)
+        : t.plural(count, place.city, countryName, place.flag);
+      return { text, timeAgo: t.timeAgo };
+    }
+
+    function showProofNotification(minCount, maxCount) {
+      const container = document.getElementById('social-proof-container');
+      if (!container) return;
+
+      const { text, timeAgo } = buildProofMessage(minCount, maxCount);
+
+      const toast = document.createElement('div');
+      toast.className = 'proof-toast bg-white border border-slate-200 rounded-xl p-3 flex items-center gap-3 shadow-lg pointer-events-auto';
+      toast.innerHTML = `
+        <span class="relative flex h-2.5 w-2.5 flex-shrink-0">
+          <span class="proof-pulse-dot absolute inline-flex h-full w-full rounded-full bg-emerald-500"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+        </span>
+        <div class="flex-1 leading-snug">
+          <p class="text-[11.5px] text-slate-700">${text}</p>
+          <p class="text-[10px] text-emerald-700/80 font-semibold mt-0.5">${timeAgo}</p>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      // Mantém no máximo 3 notificações visíveis ao mesmo tempo
+      while (container.children.length > 3) {
+        container.removeChild(container.firstChild);
+      }
+
+      // Remove essa notificação após alguns segundos
+      setTimeout(() => {
+        toast.classList.add('proof-toast-leaving');
+        setTimeout(() => toast.remove(), 400);
+      }, 5000);
+    }
+
+    // Dispara a primeira notificação logo no carregamento e depois a cada 3 segundos
+    // ==========================================================
+    // Três "ondas" de notificação, cada uma com seu intervalo e
+    // faixa de pessoas — em determinados momentos, os tempos se
+    // invertem entre si (+2 segundos) e a quantidade de pessoas
+    // cai para apenas 1 a 2, simulando uma "pausa" natural.
+    // ==========================================================
+    let quietMode = false;
+
+    // Alterna entre modo normal e modo "pausa" periodicamente:
+    // 45s no modo normal, depois 20s no modo pausa, e repete.
+    function toggleQuietMode() {
+      quietMode = !quietMode;
+      setTimeout(toggleQuietMode, quietMode ? 20000 : 45000);
+    }
+    setTimeout(toggleQuietMode, 45000);
+
+    // Conjunto de pequenas pausas extras (em segundos) somadas aleatoriamente
+    // a cada disparo, para o ritmo não ficar sempre idêntico.
+    const EXTRA_PAUSES_SEC = [3, 9, 2, 7, 4, 10, 5, 8];
+    function randomExtraPauseMs() {
+      const seconds = EXTRA_PAUSES_SEC[Math.floor(Math.random() * EXTRA_PAUSES_SEC.length)];
+      return seconds * 1000;
+    }
+
+    // Onda A: normalmente 6s / 1-9 pessoas. No modo pausa, vira 28+2=30s / 1-2 pessoas.
+    function scheduleWaveA() {
+      const base = quietMode ? 28000 + 2000 : 6000;
+      const interval = base + randomExtraPauseMs();
+      const range = quietMode ? [1, 2] : [1, 9];
+      showProofNotification(range[0], range[1]);
+      setTimeout(scheduleWaveA, interval);
+    }
+
+    // Onda B: normalmente 15s / 3-7 pessoas. No modo pausa, vira 15+2=17s / 1-2 pessoas.
+    function scheduleWaveB() {
+      const base = quietMode ? 15000 + 2000 : 15000;
+      const interval = base + randomExtraPauseMs();
+      const range = quietMode ? [1, 2] : [3, 7];
+      showProofNotification(range[0], range[1]);
+      setTimeout(scheduleWaveB, interval);
+    }
+
+    // Onda C: normalmente 28s / 2-8 pessoas. No modo pausa, vira 6+2=8s / 1-2 pessoas.
+    function scheduleWaveC() {
+      const base = quietMode ? 6000 + 2000 : 28000;
+      const interval = base + randomExtraPauseMs();
+      const range = quietMode ? [1, 2] : [2, 8];
+      showProofNotification(range[0], range[1]);
+      setTimeout(scheduleWaveC, interval);
+    }
+
+    setTimeout(scheduleWaveA, 2000);
+    setTimeout(scheduleWaveB, 5000);
+    setTimeout(scheduleWaveC, 9000);
   </script>
   </body>
 </html>
